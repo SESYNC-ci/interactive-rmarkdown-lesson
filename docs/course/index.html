@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)https://rstudio.sesync.org/p/6755/lesson.Rmd -->
+<html class="shiny-busy"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  
+  <script type="application/shiny-singletons"></script>
+  <script type="application/html-dependencies">json2[2014.02.04];jquery[1.12.4];shiny[1.0.5]</script>
+<script src="./lesson.Rmd_files/json2-min.js"></script>
+<script src="./lesson.Rmd_files/jquery.min.js"></script>
+<link href="./lesson.Rmd_files/shiny.css" rel="stylesheet">
+<script src="./lesson.Rmd_files/shiny.min.js"></script>  <script src="./lesson.Rmd_files/rmd_loader.js"></script>
+  <link href="./lesson.Rmd_files/rmd_loader.css" rel="stylesheet">
+
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" type="text/css" href="./lesson.Rmd_files/bootstrap.min.css"><script src="./lesson.Rmd_files/bootstrap.min.js"></script><script src="./lesson.Rmd_files/html5shiv.min.js"></script><script src="./lesson.Rmd_files/respond.min.js"></script><script src="./lesson.Rmd_files/tabsets.js"></script><link rel="stylesheet" type="text/css" href="./lesson.Rmd_files/default.css"><script src="./lesson.Rmd_files/highlight.js"></script><link rel="stylesheet" type="text/css" href="./lesson.Rmd_files/selectize.bootstrap3.css"><script src="./lesson.Rmd_files/selectize.min.js"></script><link rel="stylesheet" type="text/css" href="./lesson.Rmd_files/rmd_perf.css"><script src="./lesson.Rmd_files/rmd_perf.js"></script><script src="./lesson.Rmd_files/rsiframe.js"></script>
+
+
+
+<meta name="generator" content="pandoc">
+
+
+
+
+<title></title>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+<script type="text/javascript" src="./lesson.Rmd_files/MathJax.js"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+
+<body><div id="MathJax_Message" style="display: none;"></div>
+  <div>
+    <div data-display-if="!output.__reactivedoc__" data-ns-prefix="" style="display: none;">
+      <div id="rmd_loader_wrapper">
+        <div id="rmd_loader" style="">
+          <p>Please wait...</p>
+          <img src="./lesson.Rmd_files/rmd_loader.gif">
+        </div>
+      </div>
+    </div>
+    <div id="__reactivedoc__" class="shiny-html-output shiny-bound-output">
+
+
+
+
+
+
+
+<style type="text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("section-TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="fluid-row" id="section-header">
+
+
+
+
+</div>
+
+
+<div id="section-smart-and-interactive-documents" class="section level1">
+<h1>Smart and Interactive Documents</h1>
+<p>Lesson 10 with <em>Kelly Hondula</em></p>
+<div id="section-how-smart" class="section level2">
+<h2>How Smart?</h2>
+<p>The reproducible pipeline under construction begins with open data, uses scripts to perform analyses and create visualizations, and ideally ends in a published write-up.</p>
+<p><a href="https://cran.r-project.org/package=rmarkdown">rmarkdown</a> merges code and documentation, allowing you to create automatic reports that include the results of computations and visualizations created on-the-fly.</p>
+</div>
+<div id="section-how-interactive" class="section level2">
+<h2>How Interactive?</h2>
+<p>Rather than rendering to a static document, RStudio lets you easily inject <a href="https://cran.r-project.org/package=shiny">shiny</a> input and output widgets to documents constructed with RMarkdown. These widgets can accept user input through forms, menus, and sliders, and cause corresponding tables, plots, and other graphical output to dynamically update.</p>
+<p>Interactive documents require connection to a live R process, which any user running RStudio can provide, but so can hosting services like <a href="http://www.shinyapps.io/" class="uri">http://www.shinyapps.io/</a>.</p>
+</div>
+<div id="section-lesson-objectives" class="section level2">
+<h2>Lesson Objectives</h2>
+<ol style="list-style-type: decimal">
+<li>Start with “dumb” documents and the basics of Markdown.</li>
+<li>Envision an efficient, one-click pipeline with RMarkdown.</li>
+<li>Create an interactive document with Shiny.</li>
+</ol>
+</div>
+<div id="section-markdown" class="section level2">
+<h2>Markdown</h2>
+<p>Markdown exists outside of the R environment. Like R, it is both a language and an interpreter.</p>
+<ol style="list-style-type: decimal">
+<li><p>It is a <strong>language</strong> with special characters and a syntax that convey formatting instructions inside text files.</p></li>
+<li><p>The accompanying <strong>interpreter</strong> reads text files and outputs one of several types of formatted documents (e.g Word, PDF, and HTML).</p></li>
+</ol>
+</div>
+<div id="section-rmarkdown" class="section level2">
+<h2>RMarkdown</h2>
+<p>The <a href="https://cran.r-project.org/package=rmarkdown">rmarkdown</a> package bundles the formatting ability of Markdown with the ability to send embedded code to an R interpreter and capture the result.</p>
+</div>
+<div id="section-seeing-is-believing" class="section level2">
+<h2>Seeing is Believing</h2>
+<p>The handout for this lesson <em>is</em> this lesson. The file <code>worksheet-10.Rmd</code> is the RMarkdown source for this document (with a few ommissions for you to fill in). Open it and find this line of code:</p>
+<pre class="r"><code class="hljs">data.frame(counts = c(<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>))</code></pre>
+<pre><code class="hljs">##   counts
+## 1      4
+## 2      5
+## 3      6</code></pre>
+<div class="notes">
+<p>The output <em>is not in the source</em>—it was “knit” into the rendered output. Press the “Knit” button in RStudio to generate the single-page view of this lesson. As we proceed, fill in the <code>...</code> areas of your worksheet, and press the “Knit” button to verify the output.</p>
+</div>
+</div>
+<div id="section-markdown-syntax" class="section level2">
+<h2>Markdown Syntax</h2>
+<p>Before getting to the good stuff, a quick introduction to “dumb” Markdown formatting.</p>
+</div>
+<div id="section-preformatted-text" class="section level2">
+<h2>Preformatted Text</h2>
+<p>Text fenced by ``` is left untouched by the Markdown interpreter, usually for the purpose of displaying code.</p>
+<pre><code class="hljs">The *emphasis* in this text does not become
+italicized, as it would outside the "code fence".</code></pre>
+<div class="notes">
+<p>That’s three backtick characters, found next to the “1” on QWERTY keyboards, above and below the text.</p>
+</div>
+</div>
+<div id="section-bulleted-lists-preformatted" class="section level2">
+<h2>Bulleted Lists (preformatted)</h2>
+<p>Sequential lines beginning with <code>-</code> are grouped into a bulleted list. The following text shows the syntax (because the special characters are ignored).</p>
+<pre><code class="hljs">- SQL
+- Python
+- R</code></pre>
+</div>
+<div id="section-bulleted-lists" class="section level2">
+<h2>Bulleted Lists</h2>
+<p>This time, without the code fence, the output contains a list.</p>
+<ul>
+<li>SQL</li>
+<li>Python</li>
+<li>R</li>
+</ul>
+</div>
+<div id="section-numbered-lists-preformatted" class="section level2">
+<h2>Numbered Lists (preformatted)</h2>
+<p>Sequential lines beginning with <code>1.</code> are grouped into a numbered list. Conveniently, you don’t have to increment the numbers.</p>
+<pre><code class="hljs">1. SQL
+1. Python
+1. R</code></pre>
+</div>
+<div id="section-numbered-lists" class="section level2">
+<h2>Numbered Lists</h2>
+<p>This time, without the code fence, the output contains a list.</p>
+<ol style="list-style-type: decimal">
+<li>SQL</li>
+<li>Python</li>
+<li>R</li>
+</ol>
+</div>
+<div id="section-tables-preformatted" class="section level2">
+<h2>Tables (preformatted)</h2>
+<p>Separate text with pipes (<code>|</code>) to indicate columns of a table and hyphens (<code>-</code>) to mark the beginning of a table or to separate the header row.</p>
+<pre><code class="hljs">id | treatment
+---|----------
+1  | control
+2  | exclosure</code></pre>
+</div>
+<div id="section-tables" class="section level2">
+<h2>Tables</h2>
+<p>This time, without the code fence, the output contains a table.</p>
+<table class="table table-condensed">
+<thead>
+<tr class="header">
+<th>id</th>
+<th>treatment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>control</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>exclosure</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="section-configuration" class="section level2">
+<h2>Configuration</h2>
+<p>Text at the top of a Markdown file and fenced by <code>---</code> stores configuration. Variables set here can, for example, change the type of document produced.</p>
+<pre><code class="hljs">---
+output: html_document
+---</code></pre>
+<p>Change the output variable to <code>ioslides_presentation</code> and knit again to generate output formatted as a slideshow.</p>
+</div>
+<div id="section-headers" class="section level2">
+<h2>Headers</h2>
+<p>Default formatting for an <code>html_document</code> differs in some cases from an <code>ioslides_presentation</code>. The use of <code>#</code> to indicate a hierarchy of heading sizes serves an additional purpose in a slideshow.</p>
+<pre><code class="hljs"># The Biggest Heading
+## The Second Biggest Heading
+### The Third Biggest Heading</code></pre>
+</div>
+</div>
+<div id="section-the-biggest-heading" class="section level1">
+<h1>The Biggest Heading</h1>
+<div id="section-the-second-biggest-heading" class="section level2">
+<h2>The Second Biggest Heading</h2>
+<div id="section-the-third-biggest-heading" class="section level3">
+<h3>The Third Biggest Heading</h3>
+</div>
+</div>
+<div id="section-r-markdown-preformatted" class="section level2">
+<h2>R + Markdown (preformatted)</h2>
+<p>The <a href="https://cran.r-project.org/package=rmarkdown">rmarkdown</a> package evaluates the R expressions within a code fence and inserts the result into the output document. To send these “code chunks” to the R interpreter, append <code>{r}</code> to the upper fence.</p>
+<pre><code class="hljs">```{r}
+seq(1, 10)
+```</code></pre>
+<div class="notes">
+<p>In the RMarkdown file, you can see a non-ascii character in the preformatted chunk above. That is <a href="https://www.compart.com/en/unicode/U+200B">U+2008</a>, the “ZERO WIDTH SPACE” character. It is necessary to prevent the inner code chunk from being processed by <a href="https://cran.r-project.org/package=rmarkdown">rmarkdown</a> and works by breaking the code fence.</p>
+</div>
+</div>
+<div id="section-r-markdown" class="section level2">
+<h2>R + Markdown</h2>
+<p>This time, without the <em>outer</em> code fence, the code is evaluated and its output injected into the document.</p>
+<pre class="r"><code class="hljs">seq(<span class="hljs-number">1</span>, <span class="hljs-number">10</span>)</code></pre>
+<pre><code class="hljs">##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+</div>
+<div id="section-chunk-options-preformatted" class="section level2">
+<h2>Chunk Options (preformatted)</h2>
+<p>Each code chunk runs under options specified globally or within the <code>{r ...}</code> expression. The option <code>echo = FALSE</code> would cause the output to render without the input. The option <code>eval = FALSE</code>, would prevent evaluation and output rendering.</p>
+<pre><code class="hljs">```{r echo = FALSE}
+seq(1, 10)
+```</code></pre>
+</div>
+<div id="section-chunk-options" class="section level2">
+<h2>Chunk Options</h2>
+<p>This time, without the code fence, the output is rendered without the code.</p>
+<pre><code class="hljs">##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+</div>
+<div id="section-chunk-labels-preformatted" class="section level2">
+<h2>Chunk Labels (preformatted)</h2>
+<p>The first entry after <code>{r</code> will be interpretted as a chunk label if it is not setting an option. Chunk options are specified after the optional label and separated by commas.</p>
+<pre><code class="hljs">```{r do_not_run, eval = FALSE}
+seq(1, 10)
+```</code></pre>
+</div>
+<div id="section-chunk-labels" class="section level2">
+<h2>Chunk Labels</h2>
+<p>This time, without the code fence, the code is echoed but not evaluated. The label does not show up in the document—we have other uses for the label.</p>
+<pre class="r"><code class="hljs">seq(<span class="hljs-number">1</span>, <span class="hljs-number">10</span>)</code></pre>
+</div>
+<div id="section-reproducible-pipeline" class="section level2">
+<h2>Reproducible Pipeline</h2>
+<p>A pipeline might rely on several scripts that separately aquire data, tidy it, fit or run models, and validate results. Embedding calls to those external scripts is one way to create a one-click pipeline.</p>
+</div>
+<div id="section-sourced-pipeline-preformatted" class="section level2">
+<h2>Sourced Pipeline (preformatted)</h2>
+<p>The <code>worksheet-10.R</code> file is an R script that produces a <code>rodents</code> data frame, which “sourcing” makes available to subsequent code chunks.</p>
+<pre><code class="hljs">```{r load_data, echo = FALSE}
+source('worksheet-10.R')
+```</code></pre>
+<div class="notes">
+<p>If your entire pipeline can be scripted in R, you <em>could</em> embed the entire analysis in code chunks within your write-up. A better practice is to “modularize” your analysis with isolated scripts, and let your <a href="https://cran.r-project.org/package=rmarkdown">rmarkdown</a> document execute the pipeline.</p>
+</div>
+</div>
+<div id="section-sourced-pipeline" class="section level2">
+<h2>Sourced Pipeline</h2>
+<p>This time, without the code fence, the data frame is loaded into the R environment and available to subsequent code chunks.</p>
+<pre class="r"><code class="hljs">plt + geom_bar(stat = <span class="hljs-string">'identity'</span>)</code></pre>
+<p><img src="./lesson.Rmd_files/unnamed-chunk-5-1.png" width="80%"></p>
+</div>
+<div id="section-non-sourced-pipelines-preformatted" class="section level2">
+<h2>Non-sourced pipelines (preformatted)</h2>
+<p>The code interpreter is not limited to R. Several interpreters, including <code>python</code> and <code>sql</code>, can be used for code written directly into a code chunk. Access to your OS shell, for example the Linux “bash” shell, provides a way to run any scripted pipeline steps.</p>
+<pre><code class="hljs">```{bash}
+python -c "print('Hello, world!')"
+```</code></pre>
+</div>
+<div id="section-non-sourced-pipelines" class="section level2">
+<h2>Non-sourced pipelines</h2>
+<p>This time, without the code fence, the output of the shell command is captured and rendered in the document.</p>
+<pre class="bash"><code class="hljs">python -c <span class="hljs-string">"print('Hello, world!')"</span></code></pre>
+<pre><code class="hljs">## Hello, world!</code></pre>
+<div class="notes">
+<p>An important distinction between sourced and non-sourced pipelines is the inabillity of interpreters other than R to return R objects. By using <code>source</code>, an R script is run in the current R session, which provides an easy way to pass data between scripts. Typically, file-based input and output is necessary for multi-lingual pipelines.</p>
+</div>
+</div>
+<div id="section-efficient-pipelines" class="section level2">
+<h2>Efficient Pipelines</h2>
+<div class="notes">
+<p>There is no reason to run every step of a pipeline for changes made “downstream”. Like more comprehensive software for automating pipelines, <a href="https://cran.r-project.org/package=rmarkdown">rmarkdown</a> includes the notion of tracking dependencies and caching results. Cached code chunks are not re-evaluated unless the content of the code changes.</p>
+</div>
+<p>Enable <code>cache</code> in the <code>setup</code> chunk to turn off evaluation of every code chunk that has not been modified since last execution.</p>
+<pre><code class="hljs">```{r setup}
+library(knitr)
+opts_chunk$set(cache = TRUE, message = FALSE, warning = FALSE)
+```</code></pre>
+</div>
+<div id="section-cache-dependencies-preformatted" class="section level2">
+<h2>Cache Dependencies (preformatted)</h2>
+<p>With the <code>dependson</code> option, even an unmodified chunk will be re-evaluated if any chunk included as a dependency runs.</p>
+<pre><code class="hljs">```{r base_plot, include = FALSE, dependson = 'load_data'}
+library(ggplot2)
+plt &lt;- ggplot(rodents, aes(x = species_id, y = count))
+```</code></pre>
+<pre><code class="hljs">```{r, dependson = 'base_plot', out.width = '80%'}
+plt + geom_point()
+```</code></pre>
+</div>
+<div id="section-cache-dependencies" class="section level2">
+<h2>Cache Dependencies</h2>
+<p>This time, without the code fence, the plot will be updated anytime the <code>load_data</code> or <code>base_plot</code> chunks runs.</p>
+<pre class="r"><code class="hljs">plt + geom_point()</code></pre>
+<p><img src="./lesson.Rmd_files/unnamed-chunk-7-1.png" width="80%"></p>
+</div>
+<div id="section-external-dependencies" class="section level2">
+<h2>External Dependencies</h2>
+<p>By adding the option <code>cache.extra</code>, any queue can be given to force re-evaluation of an unmodified chunk. In combination with the <code>md5sum</code> function from the <code>tools</code> package, this permits external file dependencies.</p>
+<pre><code class="hljs">```{r setup}
+library(knitr)
+library(tools)
+opts_chunk$set(cache = TRUE, message = FALSE, warning = FALSE)
+```</code></pre>
+<pre><code class="hljs">```{r load_data, echo = FALSE, cache.extra = md5sum('worksheet-10.R')}
+source('worksheet.R')
+```</code></pre>
+<div class="notes">
+<p>A change to the <code>rodents</code> variable, possibly resulting from filtering in a different year in the <code>worksheet-10.R</code>, will now be reflected in the <code>geom_point</code> plot with <code>dependson = base_plot</code>, but not the <code>geom_bar</code> plot.</p>
+</div>
+</div>
+<div id="section-interact-with-shiny" class="section level2">
+<h2>Interact with Shiny</h2>
+<p>Enough on “smart” documents, what about “interactive”?</p>
+</div>
+<div id="section-what-is-shiny" class="section level2">
+<h2>What is Shiny?</h2>
+<p>Shiny is a web application framework for R that allows you to create interactive apps for exploratory data analysis and visualization, to facilitate remote collaboration, share results, and <a href="http://shiny.rstudio.com/gallery/">much more</a>.</p>
+<pre><code class="hljs">---
+output: ioslides_presentation
+runtime: shiny
+---</code></pre>
+</div>
+<div id="section-input-and-output" class="section level2">
+<h2>Input and Output</h2>
+<p>The <a href="https://cran.r-project.org/package=shiny">shiny</a> package provides functions that generate two key types of content in the output document: input and output “widgets”. The user can change the input and the output, e.g.&nbsp;a table or plot, dynamically responds.</p>
+<p><img src="./lesson.Rmd_files/arrows3.png" width="808" style="object-fit:contain;"></p>
+<div class="notes">
+<p>Writing an interactive document requires careful attention to how your input and output objects relate to each other, i.e.&nbsp;knowing what actions will initiate what sections of code to run at what time.</p>
+</div>
+</div>
+<div id="section-input-objects-preformatted" class="section level2">
+<h2>Input Objects (preformatted)</h2>
+<p>Input objects collect information from the user and save it into a list variable called <code>input</code>. The value for any given named entity in the list updates when the user changes the input widget with the corresponding name.</p>
+<pre><code class="hljs">```{r echo = FALSE}
+selectInput('pick_species',
+  label = 'Pick a Species',
+  choices = unique(species[['id']]))
+```</code></pre>
+</div>
+<div id="section-input-objects" class="section level2">
+<h2>Input Objects</h2>
+<p>This time, without the code fence, the drop-down option menu appears in the document.</p>
+<div class="form-group shiny-input-container">
+<label class="control-label" for="pick_species">Pick a Species</label>
+<div>
+<select id="pick_species" class="form-control selectized shiny-bound-input" tabindex="-1" style="display: none;"><option value="AB" selected="selected">AB</option></select><div class="selectize-control form-control single"><div class="selectize-input items full has-options has-items"><div data-value="AB" class="item">AB</div><input type="text" autocomplete="off" tabindex="" style="width: 4px;"></div><div class="selectize-dropdown single form-control" style="display: none;"><div class="selectize-dropdown-content"></div></div></div>
+<script type="application/json" data-for="pick_species">{}</script>
+</div>
+</div>
+<div class="notes">
+<p>RStudio has a nice <a href="http://shiny.rstudio.com/gallery/widget-gallery.html">gallery</a> of input objects and accompanying sample code.</p>
+</div>
+</div>
+<div id="section-output-objects-preformatted" class="section level2">
+<h2>Output objects (preformatted)</h2>
+<p>Output objects are created by several functions in the <a href="https://cran.r-project.org/package=shiny">shiny</a> package that produce a range of widgets.</p>
+<pre><code class="hljs">```{r echo = FALSE}
+renderPlot(
+  animals %&gt;%
+    filter(species_id == input[['pick_species']]) %&gt;%
+    ggplot(aes(year)) + 
+      geom_bar()
+```</code></pre>
+</div>
+<div id="section-output-objects" class="section level2">
+<h2>Output objects</h2>
+<p>This time, without the code fence, the document contains whatever plot the user chose to view.</p>
+<div id="out2af37ebe31e2aaac" class="shiny-plot-output shiny-bound-output recalculating" style="width: 100% ; height: 400px"><img src="data:image/png;base64,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oJkDXW/QtoPNTNcrtG1v0/UGrZtr9ne9QtsOHup6g7Y92vTwhbEvdNwaYL349fNLsN4xvHXpl9uW3nrnSeM+vsoZx33rhbXr/c3MrN4qYf388G+bAtazlt5894+Pu20Brmno97j+xiuvF1Z44/6dcv829pSJenjIPayHpxy8cWtYZ855e9Msfyn45vEbdpy/4p/6PdZ6fo+VyO+xAvk9ViK/x0rU9fdYb9n6f7/ylU8MP/qV2anhteM3nOsfXmqXsBIJK5CwEgkrUdewvm+43Jeb7TsWf713eL2wtkpYiYQVSFiJhJWoa1jv+9Ri7xte86kDzc6t9zbNjcMHhLVVwkokrEDCSiSsRF3DutTS91ibvWdv+8CVJ1+x8h8Iaz1hJRJWIGElElaiRLA2D156xvbr5oW1XcJKJKxAwkokrEQpYD1mwlpPWImEFUhYiYSVSFiLhBVIWImElUhYgYRVWPmElUhYgYSVSFiJhLVIWIGElUhYiYQVSFiFlU9YiYQVSFiJhJVIWIuEFUhYiYSVSFiBhFVY+YSVSFiBhJVIWImEtUhYgYSVSFiJhBVIWIWVT1iJhBVIWImElUhYi4QVqK+wrveQ2VMWViJhBRJWYeUTViJhBRJWImElEtYiYQUSViJhJRJWIGEVVj5hJRJWIGElElYiYS0SViBhJRJWImEFElZh5RNWImEFElYiYSUS1iJhBRJWImElElYgYRVWPmElElYgYSUSViJhLRJWIGElElYiYQUSVmHlE1YiYQUSViJhJRLWImEFElYiYSUSViBhFVY+YSUSViBhJRJWImEtElYgYSUSViJhBRJWYeUTViJhBRJWImElEtYiYQUSViJhJRJWIGEVVj5hJRJWIGElElYiYS0SViBhJRJWImEFElZh5RNWImEFElYiYSUS1iJhBRJWImElElYgYRVWPmElElYgYSUSViJhLRJWIGElElYiYQUSVmHlE1YiYQUSViJhJRLWImEFElYiYSUSViBhFVY+YSUSViBhJRJWImEtElYgYSUSViJhBRJWYeUTViJhBRJWImElEtYiYQUSViJhJRJWIGEVVj5hJRJWIGElElYiYS0SViBhJRJWImEFElZh5RNWImEFElYiYSUS1iJhBRJWImElElYgYRVWPmElElYgYSUSViJhLRJWIGElElYiYQUSVmHlE1YiYQUSViJhJRLW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d4372sPRrfvog+bErXNgNtU6yU4nap2ZA6nWSXY6QXP2NqnWCT2dPB089HC6DytonfWOCXzS5/aFHtA6YL1jeOv4p4u3Lf3qzpPGfbzljHrrPvqgOa7jOptrnSwfVtJ1kpXswwpaZ71jevGkrxXWs5Z+dfePj7ttAa5p6Pe4/vq3cg9PuX8be8pEPTzkHtbDUw7eeB2w7h7ePP5px/kr3hb/PdZKh5r99Ltcb0vfY+1VDzXN17veoW3j77H2q33Noa5XaNvS91j71WzTuxfG0vdYe9WeZqHrFVqX53usU8Nrxz+du7F/eKmSsAIJK5GwEgkrkLCu71+32bH4w97h9cLaKmElElYgYSUSVqJEsO7cem/T3Dh8QFhbJaxEwgokrETCSpQI1r1nb/vAlSdfsfJNwlpPWImEFUhYiYSVKBGszYOXnrH9unlhbZewEgkrkLASCStRJlifnLDWE1YiYQUSViJhJRLWImEFElYiYSUSViBhFVY+YSUSViBhJRJWImEtElYgYSUSViJhBRJWYeUTViJhBRJWImElEtYiYQUSViJhJRJWIGEVVj5hJRJWIGElElYiYS0SViBhJRJWImEFElZh5RNWImEFElYiYSUS1iJhBRJWImElElYgYRVWPmElElYgYSUSViJhLRJWIGElElYiYQUSVmHlE1YiYQUSViJhJRLWImEFElYiYSUSViBhFVY+YSUSViBhJRJWImEtElYgYSUSViJhBRJWYeUTViJhBRJWImElEtYiYQUSViJhJRJWIGEVVj5hJRJWIGElElYiYS0SViBhJRJWImEFElZh5RNWImEFElYiYSUS1iJhBRJWImElElYgYRVWPmElElYgYSUSViJhLRJWIGElElYiYQUSVmHlE1YiYQUSViJhJRLWoj+75W/od7neHj7Q9QZt233LLV/teoe27Y/9PAHadctnul6hbQ9Nd71B6/70lru6XqFtj+zreoO2ffmWj3a9QusO7gkdFwwr3htOuq7rFTZ/B046aU/XO2z+bjzpF7te4TjozJP+qOsVNn9/f9ILu14hUcJqR09YiYSVSFiBhHVlwmpHT1iJhJVIWIGEdWXCakdPWImElUhYgYR1ZcJqR09YiYSVSFiBhHVlvYT1y7u+3vUKm7/5Xbvmut5h8/f1Xfd1vcJx0D27Hul6hc3foV23d71ConoJq5mZWdaE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" width="940" height="400"></div>
+</div>
+<div id="section-render-functions" class="section level2">
+<h2>Render Functions</h2>
+<p>Key functions for creating output objects:</p>
+<ul>
+<li><code>renderPrint()</code></li>
+<li><code>renderText()</code></li>
+<li><code>renderPlot()</code></li>
+<li><code>renderTable()</code></li>
+<li><code>renderDataTable()</code></li>
+</ul>
+</div>
+<div id="section-reactivity" class="section level2">
+<h2>Reactivity</h2>
+<div class="notes">
+<p>The output objects in an interactive document have to be understood in terms of reactivity: each one “knows” its content should react to certain changes in the environment, including to the <code>input</code> list.</p>
+</div>
+<p>Create additional environment-aware objects with <code>reactive()</code> from the <a href="https://cran.r-project.org/package=shiny">shiny</a> package. A useful type of reactive object for an efficient pipeline is the result of data manipulations, which can be calculated once and used multiple times.</p>
+<pre><code class="hljs">```{r echo = FALSE, cache = FALSE}
+plot_data &lt;- reactive({
+  filter(animals,
+         species_id == input[['pick_species']])
+})
+```</code></pre>
+<pre><code class="hljs">```{r echo = FALSE, cache = FALSE}
+renderPlot({
+  plot_data() %&gt;%
+  ggplot(aes(year)) +
+    geom_bar()
+})
+```</code></pre>
+<div class="notes">
+<p>In the worked example, the step of filtering the <code>animals</code> data frame still only occurs once. In a scenario where the subset of animals were used for multiple computations or vizualitions, creating the reactive <code>plot_data()</code> object makes a more efficient pipeline.</p>
+</div>
+</div>
+<div id="section-resources" class="section level2">
+<h2>Resources</h2>
+<ul>
+<li><a href="https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf">RStudio Cheatsheet</a></li>
+<li><a href="https://shiny.rstudio.com/articles/interactive-docs.html">RStudio article on interactive documents</a></li>
+<li><a href="https://rmarkdown.rstudio.com/gallery.html">RMarkdown Gallery</a></li>
+</ul>
+</div>
+<div id="section-exercises" class="section level2">
+<h2>Exercises</h2>
+</div>
+<div id="section-exercise-1" class="section level2">
+<h2>Exercise 1</h2>
+<p>Create a table with two columns, starting with a header row with fields “Character” and “Example”. Fill in the table with rows for the special Markdown characters *, **, ^, and ~, providing an example of each.</p>
+</div>
+<div id="section-exercise-2" class="section level2">
+<h2>Exercise 2</h2>
+<p>Display your presentation on GitHub. Your repository on GitHub includes a free web hosting service known as GitHub Pages. Publish your worksheet there with the following steps.</p>
+<ul>
+<li>Copy the resulting HTML file to <code>docs/index.html</code>.</li>
+<li>Stage, commit &amp; push the <code>docs/index.html</code> file to GitHub.</li>
+<li>On GitHub, under Settings &gt; GitHub Pages, set <code>docs/</code> as the source.</li>
+</ul>
+</div>
+<div id="section-solutions" class="section level2">
+<h2>Solutions</h2>
+</div>
+<div id="section-solution-1" class="section level2">
+<h2>Solution 1</h2>
+<table class="table table-condensed">
+<thead>
+<tr class="header">
+<th>character</th>
+<th>format</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>*</td>
+<td><em>italics</em></td>
+</tr>
+<tr class="even">
+<td>**</td>
+<td><strong>bold</strong></td>
+</tr>
+<tr class="odd">
+<td>^</td>
+<td>super<sup>script</sup></td>
+</tr>
+<tr class="even">
+<td>~~</td>
+<td><del>strikethrough</del></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="section-solution-2" class="section level2">
+<h2>Solution 2</h2>
+<p>See an example at <a href="https://khondula.github.io/handouts/" class="uri">https://khondula.github.io/handouts/</a>.</p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+
+</div>
+  </div>
+
+
+
+</body></html>
