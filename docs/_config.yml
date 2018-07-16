@@ -2,14 +2,23 @@
 
 title:
 handouts:
-tag:
+  - worksheet.Rmd
+  - worksheet.R
+  - data/animals.csv
+  - data/species.csv
+  - data/README.md
+tag: v0.1
 lesson:
 instructor:
 authors:
+  - Ian Carroll
+  - Kelly Hondula
 
 # Slides
 
 slide_sorter:
+  # this lesson is contained in lesson.Rmd at the project root
+  # and by-passes the usual jekyll pipeline
 
 #####################################
 # Only modify content above or risk #
