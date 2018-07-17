@@ -9,5 +9,5 @@
 -- a merge conflict with upstream.   --
 -------------------------------------->
 
-[lesson]:
-[slideshow]:
+[lesson]: ''
+[slideshow]: ''

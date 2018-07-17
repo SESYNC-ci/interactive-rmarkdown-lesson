@@ -173,9 +173,9 @@ Default formatting for an `html_document` differs in some cases from an `ioslide
 ### The Third Biggest Heading
 ```
 
-# The Biggest Heading
-## The Second Biggest Heading
-### The Third Biggest Heading
+... The Biggest Heading
+... The Second Biggest Heading
+... The Third Biggest Heading
 
 ## R + Markdown (preformatted)
 
@@ -202,10 +202,9 @@ code fence.
 This time, without the _outer_ code fence, the code is evaluated and its
 output injected into the document.
 
-```{r}
+```...
 seq(1, 10)
 ```
-
 
 ## Chunk Options (preformatted)
 
@@ -224,7 +223,7 @@ seq(1, 10)
 
 This time, without the code fence, the output is rendered without the code.
 
-```{r echo = FALSE}
+```...
 seq(1, 10)
 ```
 
@@ -557,7 +556,7 @@ character | format
 
 ## Solution 2
 
-See an example at https://khondula.github.io/handouts.
+Just follow the instructions!
 
 [1]: https://cran.r-project.org/package=rmarkdown
 [2]: https://cran.r-project.org/package=shiny

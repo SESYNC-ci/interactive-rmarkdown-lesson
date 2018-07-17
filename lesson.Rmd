@@ -590,7 +590,7 @@ character | format
 
 ## Solution 2
 
-See an example at `r paste0('https://', params$github_account, '.github.io/handouts/')`.
+Just follow the instructions!
 
 [1]: https://cran.r-project.org/package=rmarkdown
 [2]: https://cran.r-project.org/package=shiny
