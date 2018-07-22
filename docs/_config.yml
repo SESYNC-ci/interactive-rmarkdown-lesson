@@ -1,6 +1,6 @@
 # Site
 
-title:
+title: Smart and Interactive Documents
 handouts:
   - worksheet.Rmd
   - worksheet.R
@@ -8,7 +8,7 @@ handouts:
   - data/species.csv
   - data/README.md
 tag: v0.1
-lesson:
+lesson: 9
 instructor:
 authors:
   - Ian Carroll
