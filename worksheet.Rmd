@@ -410,7 +410,7 @@ content in the output document: input and output "widgets". The user can change
 the input and the output, e.g. a table or plot, dynamically responds.
 
 ```{r echo = FALSE, out.extra = 'style="object-fit:contain;"'}
-include_graphics('docs/images/arrows3.png')
+include_graphics('https://github.com/SESYNC-ci/interactive-rmarkdown-lesson/blob/master/docs/images/arrows3.png?raw=true')
 ```
 
 <div class="notes">
