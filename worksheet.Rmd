@@ -256,12 +256,12 @@ scripts is one way to create a one-click pipeline.
 
 ## Sourced Pipeline (preformatted)
 
-The `worksheet-10.R` file is an R script that produces a `rodents` data
+The `worksheet-9.R` file is an R script that produces a `rodents` data
 frame, which "sourcing" makes available to subsequent code chunks.
 
 ```
 ```{r load_data, echo = FALSE}
-source('worksheet-10.R')
+source('worksheet-9.R')
 ```
 ```
 
@@ -310,6 +310,13 @@ and rendered in the document.
 
 ```{...}
 python -c "print('Hello, world!')"
+```
+
+Alternatively, the chunk interpreter can be set as python. Rmarkdown will assume that you have the [reticulate](https://rstudio.github.io/reticulate/articles/r_markdown.html) package installed unless the `python.reticulate` chunk argument is set to `FALSE`.
+
+```{..., python.reticulate = ...}
+hw = 'hello world!'
+print(hw.upper())
 ```
 
 <div class="notes">
