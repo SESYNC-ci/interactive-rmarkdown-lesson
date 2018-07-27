@@ -57,7 +57,7 @@ result.
 
 ## Seeing is Believing
 
-The handout for this lesson _is_ this lesson. The file `worksheet-10.Rmd` is
+The handout for this lesson _is_ this lesson. The file `worksheet-9.Rmd` is
 the RMarkdown source for this document (with a few ommissions for you to
 fill in). Open it and find this line of code:
 
@@ -381,14 +381,14 @@ opts_chunk$set(cache = TRUE, message = FALSE, warning = FALSE)
 ```
 
 ```
-```{r load_data, echo = FALSE, cache.extra = md5sum('worksheet-10.R')}
-source('worksheet-10.R')
+```{r load_data, echo = FALSE, cache.extra = md5sum('worksheet-9.R')}
+source('worksheet-9.R')
 ```
 ```
 
 <div class="notes">
 A change to the `rodents` variable, possibly resulting from filtering in a
-different year in the `worksheet-10.R`, will now be reflected in the
+different year in the `worksheet-9.R`, will now be reflected in the
 `geom_point` plot with `dependson = base_plot`, but not the `geom_bar` plot.
 </div>
 
@@ -417,7 +417,7 @@ content in the output document: input and output "widgets". The user can change
 the input and the output, e.g. a table or plot, dynamically responds.
 
 ```{r echo = FALSE, out.extra = 'style="object-fit:contain;"'}
-include_graphics('https://github.com/SESYNC-ci/interactive-rmarkdown-lesson/blob/master/docs/images/arrows3.png?raw=true')
+include_graphics('https://cyberhelp.sesync.org/interactive-rmarkdown-lesson/course/lesson.Rmd_files/arrows3.png')
 ```
 
 <div class="notes">
