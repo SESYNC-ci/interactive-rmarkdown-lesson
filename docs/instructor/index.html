@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="generator" content="pandoc" />
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <base target="_blank">
+
+  <script type="text/javascript">
+    var SLIDE_CONFIG = {
+      // Slide settings
+      settings: {
+                        useBuilds: true,
+        usePrettify: true,
+        enableSlideAreas: true,
+        enableTouch: true,
+                      },
+
+      // Author information
+      presenters: [
+            ]
+    };
+  </script>
+
+  <link href="lesson_files/ioslides-13.5.1/fonts/fonts.css" rel="stylesheet" />
+  <link href="lesson_files/ioslides-13.5.1/theme/css/default.css" rel="stylesheet" />
+  <link href="lesson_files/ioslides-13.5.1/theme/css/phone.css" rel="stylesheet" />
+  <script src="lesson_files/ioslides-13.5.1/js/modernizr.custom.45394.js"></script>
+  <script src="lesson_files/ioslides-13.5.1/js/prettify/prettify.js"></script>
+  <script src="lesson_files/ioslides-13.5.1/js/prettify/lang-r.js"></script>
+  <script src="lesson_files/ioslides-13.5.1/js/prettify/lang-yaml.js"></script>
+  <script src="lesson_files/ioslides-13.5.1/js/hammer.js"></script>
+  <script src="lesson_files/ioslides-13.5.1/js/slide-controller.js"></script>
+  <script src="lesson_files/ioslides-13.5.1/js/slide-deck.js"></script>
+
+  <style type="text/css">
+
+    b, strong {
+      font-weight: bold;
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    slides > slide {
+      -webkit-transition: all 0.4s ease-in-out;
+      -moz-transition: all 0.4s ease-in-out;
+      -o-transition: all 0.4s ease-in-out;
+      transition: all 0.4s ease-in-out;
+    }
+
+    .auto-fadein {
+      -webkit-transition: opacity 0.6s ease-in;
+      -webkit-transition-delay: 0.4s;
+      -moz-transition: opacity 0.6s ease-in 0.4s;
+      -o-transition: opacity 0.6s ease-in 0.4s;
+      transition: opacity 0.6s ease-in 0.4s;
+      opacity: 0;
+    }
+
+  </style>
+
+
+</head>
+
+<body style="opacity: 0">
+
+<slides>
+
+  <slide class="title-slide segue nobackground">
+        <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+          </hgroup>
+  </slide>
+
+<slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Smart and Interactive Documents</h2></hgroup><article  id="smart-and-interactive-documents">
+
+<p>Lesson 9 with <em>Kelly Hondula</em></p>
+
+</article></slide><slide class=""><hgroup><h2>How Smart?</h2></hgroup><article  id="how-smart">
+
+<p>The reproducible pipeline under construction begins with open data, uses scripts to perform analyses and create visualizations, and ideally ends in a published write-up.</p>
+
+<p><a href='https://cran.r-project.org/package=rmarkdown' title=''>rmarkdown</a> merges code and documentation, allowing you to create automatic reports that include the results of computations and visualizations created on-the-fly.</p>
+
+</article></slide><slide class=""><hgroup><h2>How Interactive?</h2></hgroup><article  id="how-interactive">
+
+<aside class='note'><section><p>Rather than rendering to a static document, RStudio lets you easily inject <a href='https://cran.r-project.org/package=shiny' title=''>shiny</a> input and output widgets to documents constructed with RMarkdown. These widgets can accept user input through forms, menus, and sliders, and cause corresponding tables, plots, and other graphical output to dynamically update.</p></section></aside>
+
+<p>Interactive documents require connection to a live R process, which any user running RStudio can provide, but so can hosting services like <a href='http://www.shinyapps.io/' title=''>http://www.shinyapps.io/</a>.</p>
+
+</article></slide><slide class=""><hgroup><h2>Lesson Objectives</h2></hgroup><article  id="lesson-objectives">
+
+<ol>
+<li>Start with &quot;dumb&quot; documents and the basics of Markdown.</li>
+<li>Envision an efficient, one-click pipeline with RMarkdown.</li>
+<li>Create an interactive document with Shiny.</li>
+</ol>
+
+</article></slide><slide class=""><hgroup><h2>Markdown</h2></hgroup><article  id="markdown">
+
+<p>Markdown exists outside of the R environment. Like R, it is both a language and an interpreter.</p>
+
+<ol>
+<li><p>It is a <strong>language</strong> with special characters and a syntax that convey formatting instructions inside text files.</p></li>
+<li><p>The accompanying <strong>interpreter</strong> reads text files and outputs one of several types of formatted documents (e.g Word, PDF, and HTML).</p></li>
+</ol>
+
+</article></slide><slide class=""><hgroup><h2>RMarkdown</h2></hgroup><article  id="rmarkdown">
+
+<p>The <a href='https://cran.r-project.org/package=rmarkdown' title=''>rmarkdown</a> package bundles the formatting ability of Markdown with the ability to send embedded code to an R interpreter and capture the result.</p>
+
+</article></slide><slide class=""><hgroup><h2>Seeing is Believing</h2></hgroup><article  id="seeing-is-believing">
+
+<p>The handout for this lesson <em>is</em> this lesson. The lesson&#39;s <code>.Rmd</code> worksheet is the RMarkdown source for this document (with a few ommissions for you to fill in). Open it and find this line of code:</p>
+
+<pre class = 'prettyprint lang-r'>data.frame(counts = c(4, 5, 6))</pre>
+
+<pre >##   counts
+## 1      4
+## 2      5
+## 3      6</pre>
+
+<aside class='note'><section><p>The output <em>is not in the source</em>&#8212;it was &quot;knit&quot; into the rendered output. Press the &quot;Knit&quot; button in RStudio to generate the single-page view of this lesson. As we proceed, fill in the <code>...</code> areas of your worksheet, and press the &quot;Knit&quot; button to verify the output.</p></section></aside>
+
+</article></slide><slide class=""><hgroup><h2>Markdown Syntax</h2></hgroup><article  id="markdown-syntax">
+
+<p>Before getting to the good stuff, a quick introduction to &quot;dumb&quot; Markdown formatting.</p>
+
+</article></slide><slide class=""><hgroup><h2>Preformatted Text</h2></hgroup><article  id="preformatted-text">
+
+<p>Text fenced by &quot;```&quot; is left untouched by the Markdown interpreter, usually for the purpose of displaying code. Everything else is formatted according to a light-weight syntax.</p>
+
+<pre >The *emphasis* indicated by asterisks here does not become
+italicized, as it would outside a &quot;code fence&quot;.</pre>
+
+<aside class='note'><section><p>That&#39;s three backtick characters, found next to the &quot;1&quot; on QWERTY keyboards, above and below the text.</p></section></aside>
+
+</article></slide><slide class=""><hgroup><h2>Bulleted Lists (preformatted)</h2></hgroup><article  id="bulleted-lists-preformatted">
+
+<p>Sequential lines beginning with &quot;-&quot; are grouped into a bulleted list. The following preformatted text shows the syntax.</p>
+
+<pre >- SQL
+- Python
+- R</pre>
+
+<aside class='note'><section><p>Without a code fence (which is not present in your worksheet), the chunk of text above will be rendered as a bulleted list. All the sections with &quot;(preformatted)&quot; in the online lesson are paired with a section in your worksheet for you to complete and then <code>knit</code>.</p></section></aside>
+
+</article></slide><slide class=""><hgroup><h2>Numbered Lists (preformatted)</h2></hgroup><article  id="numbered-lists-preformatted">
+
+<p>Sequential lines beginning with a number are grouped into a numbered list. The actual number you use is irrelevant.</p>
+
+<pre >6. SQL
+1. Python
+5. R</pre>
+
+</article></slide><slide class=""><hgroup><h2>Tables (preformatted)</h2></hgroup><article  id="tables-preformatted">
+
+<p>Separate text with vertical bars (<code>|</code>) to indicate columns of a table and hyphens (<code>-</code>) to mark the beginning of a table or to separate the header row.</p>
+
+<pre >id | treatment
+---|----------
+1  | control
+2  | exclosure</pre>
+
+</article></slide><slide class=""><hgroup><h2>Configuration</h2></hgroup><article  id="configuration">
+
+<p>Text at the top of a Markdown file and fenced by <code>---</code> stores configuration. Variables set here can, for example, change the type of document produced.</p>
+
+<pre >---
+output: html_document
+---</pre>
+
+<p>Change the output variable to <code>ioslides_presentation</code> and knit again to generate output formatted as a slideshow.</p>
+
+</article></slide><slide class=""><hgroup><h2>Headers (preformatted)</h2></hgroup><article  id="headers-preformatted">
+
+<p>Default formatting for an <code>html_document</code> differs in some cases from an <code>ioslides_presentation</code>. The use of <code>#</code> to indicate a hierarchy of heading sizes serves an additional purpose in a slideshow.</p>
+
+<pre ># The Biggest Heading
+## The Second Biggest Heading
+### The Third Biggest Heading</pre>
+
+</article></slide><slide class=""><hgroup><h2>R + Markdown (preformatted)</h2></hgroup><article  id="r-markdown-preformatted">
+
+<p>The <a href='https://cran.r-project.org/package=rmarkdown' title=''>rmarkdown</a> package evaluates the R expressions within a code fence and inserts the result into the output document. To send these &quot;code chunks&quot; to the R interpreter, append <code>{r}</code> to the upper fence.</p>
+
+<pre >```{r}
+seq(1, 10)
+```</pre>
+
+</article></slide><slide class=""><hgroup><h2>Chunk Options (preformatted)</h2></hgroup><article  id="chunk-options-preformatted">
+
+<p>Each code chunk runs under options specified globally or within the <code>{r ...}</code> expression. The option <code>echo = FALSE</code> would cause the output to render without the input. The option <code>eval = FALSE</code>, would prevent evaluation and output rendering.</p>
+
+<pre >```{r echo = FALSE}
+seq(1, 10)
+```</pre>
+
+</article></slide><slide class=""><hgroup><h2>Chunk Labels (preformatted)</h2></hgroup><article  id="chunk-labels-preformatted">
+
+<p>The first entry after <code>{r</code> will be interpretted as a chunk label if it is not setting an option. Chunk options are specified after the optional label and separated by commas. Labels do not show up in the document&#8212;we&#39;ll have other uses for them.</p>
+
+<pre >```{r does_not_run, eval = FALSE}
+seq(1, 10)
+```</pre>
+
+</article></slide><slide class=""><hgroup><h2>Reproducible Pipeline</h2></hgroup><article  id="reproducible-pipeline">
+
+<p>A pipeline might rely on several scripts that separately aquire data, tidy it, fit or run models, and validate results. Embedding calls to those external scripts is one way to create a one-click pipeline.</p>
+
+</article></slide><slide class=""><hgroup><h2>Sourced Pipeline (preformatted)</h2></hgroup><article  id="sourced-pipeline-preformatted">
+
+<p>The <code>source</code> function in R includes the contents of a separate file in the current code chunk. The entire script is evaluated in the current environment.</p>
+
+<pre >```{r load_data, echo = FALSE}
+source(&#39;worksheet-9.R&#39;)
+```</pre>
+
+<p>The lesson&#39;s <code>.R</code> worksheet is an R script creating a <code>rodents</code> data frame, which &quot;sourcing&quot; makes available to following lines as well as subsequent code chunks.</p>
+
+</article></slide><slide class=""><hgroup><h2>Sourced Pipeline (preformatted)</h2></hgroup><article  id="sourced-pipeline-preformatted-1">
+
+<pre >```{r bar_plot}
+library(ggplot2)
+ggplot(rodents, aes(x = species_id, y = count)) +
+  geom_bar(stat = &#39;identity&#39;)
+```</pre>
+
+<aside class='note'><section><p>If your entire pipeline can be scripted in R, you <em>could</em> embed the entire analysis in code chunks within your write-up. The better practice demonstrated here is &quot;modularizing&quot; your analysis by splitting it into isolated scripts, and then using an <a href='https://cran.r-project.org/package=rmarkdown' title=''>rmarkdown</a> document to execute the pipeline.</p></section></aside>
+
+</article></slide><slide class=""><hgroup><h2>Non-sourced pipelines (preformatted)</h2></hgroup><article  id="non-sourced-pipelines-preformatted">
+
+<p>The code interpreter is not limited to R. Several interpreters, including <code>python</code> and <code>sql</code>, can be used for code written directly into a code chunk.</p>
+
+<pre >```{python}
+greeting = &#39;Hello, {}!&#39;
+print(greeting.format(&#39;world&#39;))
+```</pre>
+
+</article></slide><slide class=""><hgroup><h2>Non-sourced pipelines (preformatted)</h2></hgroup><article  id="non-sourced-pipelines-preformatted-1">
+
+<p>Access to your operating system shell, for example the Linux <code>bash</code> interpreter, provides a way to run any scripted pipeline step.</p>
+
+<pre >```{bash}
+python -c &#39;import os; print(&quot;Hello, {}!&quot;.format(os.environ[&quot;USER&quot;]))&#39;
+```</pre>
+
+<aside class='note'><section><p>An important distinction between sourced and non-sourced pipelines is the inabillity of interpreters other than R to return R objects. By using <code>source</code>, an R script is run in the current R session, which provides an easy way to pass data between scripts. Typically, file-based input and output is necessary for multi-lingual pipelines. For Python, however, the <a href='' title=''>reticulate</a>{:.rlib} package provides a bi-directional interface.</p></section></aside>
+
+</article></slide><slide class=""><hgroup><h2>Efficient Pipelines (preformatted)</h2></hgroup><article  id="efficient-pipelines-preformatted">
+
+<aside class='note'><section><p>There is no reason to run every step of a pipeline after making changes &quot;downstream&quot;. Like more comprehensive software for automating pipelines, <a href='https://cran.r-project.org/package=rmarkdown' title=''>rmarkdown</a> includes the notion of tracking dependencies and caching results. Cached code chunks are not re-evaluated unless the content of the code changes.</p></section></aside>
+
+<p>Enable <code>cache</code> in the <code>setup</code> chunk to turn off re-evaluation of any code chunk that has not been modified since the last <code>knit</code>.</p>
+
+<pre >```{r setup, include = FALSE}
+library(knitr)
+opts_chunk$set(message = FALSE, warning = FALSE, out.width = &#39;75%&#39;, cache = TRUE)
+```</pre>
+
+</article></slide><slide class=""><hgroup><h2>Cache (preformatted)</h2></hgroup><article  id="cache-preformatted">
+
+<p>Render the worksheet again to create a cache for each code chunk, <em>and then</em> modify your <code>bar_plot</code> chunk to show species&#39; weights and render again. The &quot;slow&quot; <code>load_data</code> chunk zips right by, using its cache, but the plot will change.</p>
+
+<pre >```{r bar_plot}
+library(ggplot2)
+ggplot(rodents, aes(x = species_id, y = weight)) +
+  geom_bar(stat = &#39;identity&#39;)
+```</pre>
+
+</article></slide><slide class=""><hgroup><h2>Cache Dependencies (preformatted)</h2></hgroup><article  id="cache-dependencies-preformatted">
+
+<p>With the <code>dependson</code> option, even an unmodified chunk will be re-evaluated if a dependency runs.</p>
+
+<pre >```{r clean_bar_plot, dependson = &#39;load_data&#39;}
+ggplot(rodents, aes(x = species_id, y = weight)) +
+  geom_bar(stat = &#39;identity&#39;)
+```</pre>
+
+<aside class='note'><section><p>Add the above new chunk with <code>dependson = &#39;load_data&#39;</code> so it updates if and only if the load_data chunk is executed. Knit the document and compare the <code>bar_chart</code> and <code>clean_bar_chart</code> outputs; at this point <code>bar_plot</code> and <code>clean_bar_plot</code> should be identical. Now make <code>load_data</code> clean the data, then <code>knit</code> again and compare the plots.</p></section></aside>
+
+<pre >```{r load_data, echo = FALSE}
+source(&#39;worksheet-9.R&#39;)
+rodents &lt;- subset(rodents, !is.na(weight))
+```</pre>
+
+<aside class='note'><section><p>The updated result of <code>clean_bar_plot</code> now reflects the cleaning operation on the <code>rodents</code> data frame. But the <code>bar_plot</code> chunk simply loaded results from its cache, because the dependency was not explicit.</p>
+
+<p>Note that the second plot will execute when the <code>load_data</code> <em>chunk</em> changes, but this chunk contains a call to <code>source</code>. The <code>rodents</code> variable could change if the code in the sourced file is updated, but this would <em>not</em> trigger re-generation of the second plot!</p></section></aside>
+
+</article></slide><slide class=""><hgroup><h2>External Dependencies (preformatted)</h2></hgroup><article  id="external-dependencies-preformatted">
+
+<p>By adding the option <code>cache.extra</code>, any trigger can be given to force re-evaluation of an unmodified chunk. In combination with the <code>md5sum</code> function from the <code>tools</code> package, this permits external file dependencies.</p>
+
+<pre >```{r setup}
+library(knitr)
+library(tools)
+opts_chunk$set(message = FALSE, warning = FALSE, out.width = &#39;75%&#39;, cache = TRUE)
+```</pre>
+
+<pre >```{r load_data, echo = FALSE, cache.extra = md5sum(&#39;worksheet-9.R&#39;)}
+source(&#39;worksheet-9.R&#39;)
+rodents &lt;- subset(rodents, !is.na(weight))
+```</pre>
+
+<aside class='note'><section><p>A change to the <code>rodents</code> data frame, for example by dropping NAs at a more appropriate data cleaning step in the sourced <code>.R</code> script, will now be reflected in the <code>clean_bar_plot</code> result with <code>dependson = load_data</code>, but not the <code>bar_plot</code> plot.</p>
+
+<pre >  summarize(count = n(), weight = mean(weight, na.rm = TRUE))</pre></section></aside>
+
+</article></slide><slide class=""><hgroup><h2>Interact with Shiny</h2></hgroup><article  id="interact-with-shiny">
+
+<p>Enough about &quot;smart&quot; documents, what about &quot;interactive&quot;?</p>
+
+</article></slide><slide class=""><hgroup><h2>What is Shiny?</h2></hgroup><article  id="what-is-shiny">
+
+<p>Shiny is a web application framework for R that allows you to create interactive apps for exploratory data analysis and visualization, to facilitate remote collaboration, share results, and <a href='http://shiny.rstudio.com/gallery/' title=''>much more</a>.</p>
+
+<pre >---
+output: ioslides_presentation
+runtime: shiny_prerendered
+---</pre>
+
+</article></slide><slide class=""><hgroup><h2>Input and Output</h2></hgroup><article  id="input-and-output">
+
+<p>The <a href='https://cran.r-project.org/package=shiny' title=''>shiny</a> package provides functions that generate two key types of content in the output document: input and output &quot;widgets&quot;. The user can change the input and the output, e.g. a table or plot, dynamically responds.</p>
+
+<p><img src="docs/images/arrows3.png" width="100%" /></p>
+
+<aside class='note'><section><p>Writing an interactive document requires careful attention to how your input and output objects relate to each other, i.e. knowing what actions will initiate what sections of code to run at what time.</p></section></aside>
+
+</article></slide><slide class=""><hgroup><h2>Input Objects (preformatted)</h2></hgroup><article  id="input-objects-preformatted">
+
+<p>Input objects collect information from the user and save it into a list variable called <code>input</code>. The value for any given named entity in the list updates when the user changes the input widget with the corresponding name.</p>
+
+<pre >```{r echo = FALSE}
+selectInput(&#39;pick_species&#39;,
+  label = &#39;Pick a Species&#39;,
+  choices = unique(species[[&#39;id&#39;]]))
+```</pre>
+
+<aside class='note'><section><p>RStudio has a nice <a href='http://shiny.rstudio.com/gallery/widget-gallery.html' title=''>gallery</a> of input objects and accompanying sample code.</p></section></aside>
+
+</article></slide><slide class=""><hgroup><h2>Contexts (preformatted)</h2></hgroup><article  id="contexts-preformatted">
+
+<p>As shown in the figure above, an interactive document runs R code in multiple &quot;contexts&quot;; for example, while rendering the document and in the connected R process running on the server. The &quot;data&quot; context is a special context needed for cached chunk output that we want available to the server.</p>
+
+<pre >```{r load_data, echo = FALSE, cache.extra = md5sum(&#39;worksheet.R&#39;), context = &#39;data&#39;}
+source(&#39;worksheet-9.R&#39;)
+rodents &lt;- subset(rodents, !is.na(weight))
+```</pre>
+
+<p>You might have to clear (i.e. delete) the cache since we added the runtime.</p>
+
+</article></slide><slide class=""><hgroup><h2>Output objects (preformatted)</h2></hgroup><article  id="output-objects-preformatted">
+
+<p>Output objects are created in ther &quot;server&quot; context by several functions in the <a href='https://cran.r-project.org/package=shiny' title=''>shiny</a> package that produce a range of widgets.</p>
+
+<pre >```{r context = &#39;server&#39;}
+library(dplyr)
+output[[&#39;ts_plot&#39;]] &lt;- renderPlot({
+  animals %&gt;%
+    filter(species_id == input[[&#39;pick_species&#39;]]) %&gt;%
+    ggplot(aes(year)) + 
+      geom_bar()
+})
+```</pre>
+
+<pre >```{r echo = FALSE}
+plotOutput(&#39;ts_plot&#39;)
+```</pre>
+
+</article></slide><slide class=""><hgroup><h2>Render Functions</h2></hgroup><article  id="render-functions">
+
+<p>Key functions for creating output objects:</p>
+
+<ul>
+<li><code>renderPrint()</code></li>
+<li><code>renderText()</code></li>
+<li><code>renderPlot()</code></li>
+<li><code>renderTable()</code></li>
+<li><code>renderDataTable()</code></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Reactivity (preformatted)</h2></hgroup><article  id="reactivity-preformatted">
+
+<aside class='note'><section><p>The output objects in an interactive document have to be understood in terms of reactivity: each one &quot;knows&quot; its content should react to certain changes in the environment, including to the <code>input</code> list.</p></section></aside>
+
+<p>Create additional environment-aware objects with <code>reactive()</code> from the <a href='https://cran.r-project.org/package=shiny' title=''>shiny</a> package. A useful type of reactive object for an efficient pipeline is the result of data manipulations, which can be calculated once and used multiple times.</p>
+
+<pre >```{r context = &#39;server&#39;}
+plot_data &lt;- reactive({
+  filter(animals,
+         species_id == input[[&#39;pick_species&#39;]])
+})
+output[[&#39;react_ts_plot&#39;]] &lt;- renderPlot({
+  plot_data() %&gt;%
+    ggplot(aes(year)) +
+      geom_bar()
+})
+```</pre>
+
+</article></slide><slide class=""><hgroup><h2>Reactivity (preformatted)</h2></hgroup><article  id="reactivity-preformatted-1">
+
+<p>Don&#39;t forget to include your plot in the document!</p>
+
+<pre >```{r echo = FASE}
+plotOutput(&#39;react_ts_plot&#39;)
+```</pre>
+
+<aside class='note'><section><p>In the worked example, the step of filtering the <code>animals</code> data frame still only occurs once. In a scenario where the subset of animals were used for multiple computations or vizualitions, creating the reactive <code>plot_data()</code> object makes a more efficient pipeline.</p></section></aside>
+
+</article></slide><slide class=""><hgroup><h2>Resources</h2></hgroup><article  id="resources">
+
+<ul>
+<li><a href='https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf' title=''>RStudio Cheatsheet</a></li>
+<li><a href='https://shiny.rstudio.com/articles/interactive-docs.html' title=''>RStudio article on interactive documents</a></li>
+<li><a href='https://shiny.rstudio.com/articles/interactive-docs.html' title=''>RStudio article on &quot;shiny_prerendered&quot; runtime</a></li>
+<li><a href='https://rmarkdown.rstudio.com/gallery.html' title=''>RMarkdown Gallery</a></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Exercises</h2></hgroup><article  id="exercises">
+
+</article></slide><slide class=""><hgroup><h2>Exercise 1</h2></hgroup><article  id="exercise-1">
+
+<p>Create a table with two columns, starting with a header row with fields &quot;Character&quot; and &quot;Example&quot;. Fill in the table with rows for the special Markdown characters *, **, ^, and ~, providing an example of each.</p>
+
+</article></slide><slide class=""><hgroup><h2>Exercise 2</h2></hgroup><article  id="exercise-2">
+
+<p>Display your presentation on GitHub. Your repository on GitHub includes a free web hosting service known as GitHub Pages. Publish your worksheet there with the following steps.</p>
+
+<ul>
+<li>Remove any bits of the shiny runtime (GitHub only serves static pages).</li>
+<li>Copy the HTML output file to <code>docs/index.html</code>.</li>
+<li>Stage, commit &amp; push the <code>docs/index.html</code> file to GitHub.</li>
+<li>On GitHub, under Settings &gt; GitHub Pages, set <code>docs/</code> as the source.</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Solutions</h2></hgroup><article  id="solutions">
+
+</article></slide><slide class=""><hgroup><h2>Solution 1</h2></hgroup><article  id="solution-1">
+
+<table class = 'rmdtable'>
+<tr class="header">
+<th align="left">character</th>
+<th align="left">format</th>
+</tr>
+<tr class="odd">
+<td align="left">*</td>
+<td align="left"><em>italics</em></td>
+</tr>
+<tr class="even">
+<td align="left">**</td>
+<td align="left"><strong>bold</strong></td>
+</tr>
+<tr class="odd">
+<td align="left">^</td>
+<td align="left">super<sup>script</sup></td>
+</tr>
+<tr class="even">
+<td align="left">~~</td>
+<td align="left"><del>strikethrough</del></td>
+</tr>
+</table>
+
+</article></slide><slide class=""><hgroup><h2>Solution 2</h2></hgroup><article  id="solution-2">
+
+<p>Just follow the instructions!</p></article></slide>
+
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+
+<!-- map slide visiblity events into shiny -->
+<script>
+  (function() {
+    if (window.jQuery) {
+       window.jQuery(document).on('slideleave', function(e) {
+         window.jQuery(e.target).trigger('hidden');
+      });
+       window.jQuery(document).on('slideenter', function(e) {
+         window.jQuery(e.target).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>

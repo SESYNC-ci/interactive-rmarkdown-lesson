@@ -4,12 +4,10 @@ output: html_document
 
 ```{r setup, include = FALSE}
 library(knitr)
-opts_chunk$set(message = FALSE, warning = FALSE)
+opts_chunk$set(message = FALSE, warning = FALSE, out.width = '75%')
 ```
 
 # Smart and Interactive Documents
-
-Lesson 10 with *Kelly Hondula*
 
 ## How Smart?
 
@@ -22,11 +20,6 @@ reports that include the results of computations and visualizations created
 on-the-fly.
 
 ## How Interactive?
-
-Rather than rendering to a static document, RStudio lets you easily inject
-[shiny][2] input and output widgets to documents constructed with RMarkdown.
-These widgets can accept user input through forms, menus, and sliders, and cause
-corresponding tables, plots, and other graphical output to dynamically update.
 
 Interactive documents require connection to a live R process, which any user
 running RStudio can provide, but so can hosting services like
@@ -57,20 +50,13 @@ result.
 
 ## Seeing is Believing
 
-The handout for this lesson _is_ this lesson. The file `worksheet-9.Rmd` is
+The handout for this lesson _is_ this lesson. The lesson's `.Rmd` worksheet is
 the RMarkdown source for this document (with a few ommissions for you to
 fill in). Open it and find this line of code:
 
 ```{r}
 data.frame(counts = c(4, 5, 6))
 ```
-
-<div class="notes">
-The output *is not in the source*---it was "knit" into the rendered
-output. Press the "Knit" button in RStudio to generate the single-page view of
-this lesson. As we proceed, fill in the `...` areas of your worksheet, and press
-the "Knit" button to verify the output.
-</div>
 
 ## Markdown Syntax
 
@@ -79,70 +65,37 @@ formatting.
 
 ## Preformatted Text
 
-Text fenced by \`\`\` is left untouched by the Markdown interpreter, usually
-for the purpose of displaying code.
+Text fenced by "\`\`\`" is left untouched by the Markdown interpreter, usually
+for the purpose of displaying code. Everything else is formatted according to
+a light-weight syntax.
 
 ```
-The *emphasis* in this text does not become
-italicized, as it would outside the "code fence".
-```
-
-<div class="notes">
-That's three backtick characters, found next to the "1" on QWERTY keyboards,
-above and below the text.
-</div>
-
-## Bulleted Lists (preformatted)
-
-Sequential lines beginning with `-` are grouped into a bulleted list. The
-following text shows the syntax (because the special characters are ignored).
-
-```
-- SQL
-- Python
-- R
+The *emphasis* indicated by asterisks here does not become
+italicized, as it would outside a "code fence".
 ```
 
 ## Bulleted Lists
 
-This time, without the code fence, the output contains a list.
+Sequential lines beginning with "-" are grouped into a bulleted list. The
+following preformatted text shows the syntax.
 
 - SQL
+- Python
 ...
-
-## Numbered Lists (preformatted)
-
-Sequential lines beginning with `1.` are grouped into a numbered list.
-Conveniently, you don't have to increment the numbers.
-
-```
-1. SQL
-1. Python
-1. R
-```
 
 ## Numbered Lists
 
-This time, without the code fence, the output contains a list.
+Sequential lines beginning with a number are grouped into a numbered list.
+The actual number you use is irrelevant.
 
-1. SQL
+6. SQL
+1. Python
 ...
-
-## Tables (preformatted)
-
-Separate text with pipes (`|`) to indicate columns of a table and
-hyphens (`-`) to mark the beginning of a table or to separate the header row.
-
-```
-id | treatment
----|----------
-1  | control
-2  | exclosure
-```
 
 ## Tables
 
-This time, without the code fence, the output contains a table.
+Separate text with vertical bars (`|`) to indicate columns of a table and
+hyphens (`-`) to mark the beginning of a table or to separate the header row.
 
 id | treatment
 ---|----------
@@ -154,97 +107,48 @@ id | treatment
 Text at the top of a Markdown file and fenced by `---` stores configuration.
 Variables set here can, for example, change the type of document produced.
 
-```
----
-output: html_document
----
-```
-
 Change the output variable to `ioslides_presentation` and knit again to generate
 output formatted as a slideshow.
 
 ## Headers
 
-Default formatting for an `html_document` differs in some cases from an `ioslides_presentation`. The use of `#` to indicate a hierarchy of heading sizes serves an additional purpose in a slideshow.
-
-```
-# The Biggest Heading
-## The Second Biggest Heading
-### The Third Biggest Heading
-```
+Default formatting for an `html_document` differs in some cases from an
+`ioslides_presentation`. The use of `#` to indicate a hierarchy of heading sizes
+serves an additional purpose in a slideshow.
 
 ... The Biggest Heading
 ... The Second Biggest Heading
 ... The Third Biggest Heading
 
-## R + Markdown (preformatted)
+## R + Markdown
 
 The [rmarkdown][1] package evaluates the R expressions within a code fence and
 inserts the result into the output document. To send these "code chunks" to the
 R interpreter, append `{r}` to the upper fence.
 
-```
-```{r}
-seq(1, 10)
-```
-```
-
-<div class="notes">
-In the RMarkdown file, you can see a non-ascii character in the preformatted
-chunk above. That is [U+2008](https://www.compart.com/en/unicode/U+200B), the
-"ZERO WIDTH SPACE" character. It is necessary to prevent the inner code
-chunk from being processed by [rmarkdown][1] and works by breaking the
-code fence.
-</div>
-
-## R + Markdown
-
-This time, without the _outer_ code fence, the code is evaluated and its
-output injected into the document.
-
 ```...
 seq(1, 10)
 ```
 
-## Chunk Options (preformatted)
+## Chunk Options
 
 Each code chunk runs under options specified globally or within the `{r ...}`
 expression. The option `echo = FALSE` would cause the output to render without
 the input. The option `eval = FALSE`, would prevent evaluation and output
 rendering.
 
-```
-```{r echo = FALSE}
-seq(1, 10)
-```
-```
-
-## Chunk Options
-
-This time, without the code fence, the output is rendered without the code.
-
 ```...
 seq(1, 10)
 ```
 
-## Chunk Labels (preformatted)
+## Chunk Labels
 
 The first entry after `{r` will be interpretted as a chunk label if it is not
 setting an option. Chunk options are specified after the optional label and
-separated by commas.
+separated by commas. Labels do not show up in the document---we'll have other
+uses for them.
 
-```
-```{r do_not_run, eval = FALSE}
-seq(1, 10)
-```
-```
-
-## Chunk Labels
-
-This time, without the code fence, the code is echoed but not evaluated. The
-label does not show up in the document---we have other uses for the label.
-
-```{r do_not_run, eval = FALSE}
+```...
 seq(1, 10)
 ```
 
@@ -254,140 +158,77 @@ A pipeline might rely on several scripts that separately aquire data, tidy it,
 fit or run models, and validate results. Embedding calls to those external
 scripts is one way to create a one-click pipeline.
 
-## Sourced Pipeline (preformatted)
-
-The `worksheet-9.R` file is an R script that produces a `rodents` data
-frame, which "sourcing" makes available to subsequent code chunks.
-
-```
-```{r load_data, echo = FALSE}
-source('worksheet-9.R')
-```
-```
-
-<div class="notes">
-If your entire pipeline can be scripted in R, you *could* embed the entire
-analysis in code chunks within your write-up. A better practice is to
-"modularize" your analysis with isolated scripts, and let your
-[rmarkdown][1] document execute the pipeline.
-</div>
-
 ## Sourced Pipeline
 
-This time, without the code fence, the data frame is loaded into the R
-environment and available to subsequent code chunks.
+The `source` function in R includes the contents of a separate file in the
+current code chunk. The entire script is evaluated in the current environment.
 
-```{... load_data, echo = FALSE}
+```{...}
 source(...)
 ```
 
-```{... base_plot, include = FALSE}
+The lesson's `.R` worksheet is an R script creating a `rodents` data frame,
+which "sourcing" makes available to following lines as well as subsequent code
+chunks.
+
+## Sourced Pipeline
+
+```{...}
 library(ggplot2)
-plt <- ggplot(..., aes(x = species_id, y = count))
-```
-
-```{... out.width = '80%'}
-plt + geom_bar(stat = 'identity')
-```
-
-## Non-sourced pipelines (preformatted)
-
-The code interpreter is not limited to R. Several interpreters, including
-`python` and `sql`, can be used for code written directly into a code chunk.
-Access to your OS shell, for example the Linux "bash" shell, provides a way to
-run any scripted pipeline steps.
-
-```
-```{bash}
-python -c "print('Hello, world!')"
-```
+ggplot(rodents, aes(...)) +
+  geom_bar(stat = 'identity')
 ```
 
 ## Non-sourced pipelines
 
-This time, without the code fence, the output of the shell command is captured
-and rendered in the document.
+The code interpreter is not limited to R. Several interpreters, including
+`python` and `sql`, can be used for code written directly into a code chunk.
 
 ```{...}
-python -c "print('Hello, world!')"
+greeting = 'Hello, {}!'
+print(greeting.format('world'))
 ```
 
-<div class="notes">
-An important distinction between sourced and non-sourced pipelines is the
-inabillity of interpreters other than R to return R objects. By using `source`,
-an R script is run in the current R session, which provides an easy way to pass
-data between scripts. Typically, file-based input and output is necessary for
-multi-lingual pipelines.
-</div>
+## Non-sourced pipelines
+
+Access to your operating system shell, for example the Linux `bash` interpreter,
+provides a way to run any scripted pipeline step.
+
+```{...}
+python -c 'import os; print("Hello, {}!".format(os.environ["USER"]))'
+```
 
 ## Efficient Pipelines
 
-<div class="notes">
-There is no reason to run every step of a pipeline for changes made
-"downstream". Like more comprehensive software for automating pipelines,
-[rmarkdown][1] includes the notion of tracking dependencies and caching results.
-Cached code chunks are not re-evaluated unless the content of the code changes.
-</div>
+Enable `cache` in the `setup` chunk to turn off re-evaluation of any code
+chunk that has not been modified since the last `knit`.
 
-Enable `cache` in the `setup` chunk to turn off evaluation of every code
-chunk that has not been modified since last execution.
+## Cache
 
-```
-```{r setup}
-library(knitr)
-opts_chunk$set(cache = TRUE, message = FALSE, warning = FALSE)
-```
-```
-
-## Cache Dependencies (preformatted)
-
-With the `dependson` option, even an unmodified chunk will be re-evaluated if
-any chunk included as a dependency runs.
-
-```
-```{r, dependson = 'base_plot', out.width = '80%'}
-plt + geom_point()
-```
-```
+Render the worksheet again to create a cache for each code chunk, *and then*
+modify your `bar_plot` chunk to show species' weights and render again. The
+"slow" `load_data` chunk zips right by, using its cache, but the plot will
+change.
 
 ## Cache Dependencies
 
-This time, without the code fence, the plot will be updated anytime the
-`load_data` or `base_plot` chunks runs.
+With the `dependson` option, even an unmodified chunk will be re-evaluated if a
+dependency runs.
 
-```{... out.width = '80%'}
-plt + geom_point()
+```{...}
+ggplot(rodents, aes(x = species_id, y = weight)) +
+  geom_bar(stat = 'identity')
 ```
 
 ## External Dependencies
 
-By adding the option `cache.extra`, any queue can be given to force
+By adding the option `cache.extra`, any trigger can be given to force
 re-evaluation of an unmodified chunk. In combination with the `md5sum` function
 from the `tools` package, this permits external file dependencies.
 
-```
-```{r setup}
-library(knitr)
-library(tools)
-opts_chunk$set(cache = TRUE, message = FALSE, warning = FALSE)
-```
-```
-
-```
-```{r load_data, echo = FALSE, cache.extra = md5sum('worksheet-9.R')}
-source('worksheet-9.R')
-```
-```
-
-<div class="notes">
-A change to the `rodents` variable, possibly resulting from filtering in a
-different year in the `worksheet-9.R`, will now be reflected in the
-`geom_point` plot with `dependson = base_plot`, but not the `geom_bar` plot.
-</div>
-
 ## Interact with Shiny
 
-Enough on "smart" documents, what about "interactive"?
+Enough about "smart" documents, what about "interactive"?
 
 ## What is Shiny?
 
@@ -396,78 +237,53 @@ apps for exploratory data analysis and visualization, to facilitate remote
 collaboration, share results, and [much
 more](http://shiny.rstudio.com/gallery/).
 
-```
----
-output: ioslides_presentation
-runtime: shiny
----
-```
-
 ## Input and Output
 
 The [shiny][2] package provides functions that generate two key types of
 content in the output document: input and output "widgets". The user can change
 the input and the output, e.g. a table or plot, dynamically responds.
 
-```{r echo = FALSE, out.extra = 'style="object-fit:contain;"'}
-include_graphics('https://cyberhelp.sesync.org/interactive-rmarkdown-lesson/course/lesson.Rmd_files/arrows3.png')
+```{r echo = FALSE, out.width = '100%'}
+include_graphics('https://cyberhelp.sesync.org/interactive-rmarkdown-lesson/images/arrows3.png')
 ```
 
-<div class="notes">
-Writing an interactive document requires careful attention to how your input and
-output objects relate to each other, i.e. knowing what actions will initiate
-what sections of code to run at what time.
-</div>
-
-## Input Objects (preformatted)
+## Input Objects
 
 Input objects collect information from the user and save it into a list variable
 called `input`. The value for any given named entity in the list updates when
 the user changes the input widget with the corresponding name.
 
-```
-```{r echo = FALSE}
-selectInput('pick_species',
-  label = 'Pick a Species',
-  choices = unique(species[['id']]))
-```
+```{...}
+...('pick_species',
+  ... = 'Pick a Species',
+  ... = unique(species[['id']]))
 ```
 
-## Input Objects
+## Contexts
 
-This time, without the code fence, the drop-down option menu appears in the
-document.
+As shown in the figure above, an interactive document runs R code in multiple
+"contexts"; for example, while rendering the document and in the connected R
+process running on the server. The "data" context is a special context needed
+for cached chunk output that we want available to the server.
 
-```{... echo = FALSE}
-...
-```
-
-<div class="notes">
-RStudio has a nice [gallery][3] of input objects and accompanying sample code.
-</div>
-
-## Output objects (preformatted)
-
-Output objects are created by several functions in the [shiny][2] package that
-produce a range of widgets.
-
-```
-```{r echo = FALSE}
-renderPlot(
-  animals %>%
-    filter(species_id == input[['pick_species']]) %>%
-    ggplot(aes(year)) + 
-      geom_bar()
-```
-```
+You might have to clear (i.e. delete) the cache since we added the runtime.
 
 ## Output objects
 
-This time, without the code fence, the document contains whatever plot the
-user chose to view.
+Output objects are created in ther "server" context by several functions in the
+[shiny][2] package that produce a range of widgets.
 
-```{... echo = FALSE, cache = FALSE}
+```{...}
 ...
+output[[...]] <- ...({
+  animals %>%
+    filter(species_id == ...) %>%
+    ggplot(aes(year)) + 
+      geom_bar()
+})
+```
+```{...}
+plotOutput(...)
 ```
 
 ## Render Functions
@@ -482,47 +298,36 @@ Key functions for creating output objects:
 
 ## Reactivity
 
-<div class="notes">
-The output objects in an interactive document have to be understood in terms of
-reactivity: each one "knows" its content should react to certain changes in the
-environment, including to the `input` list.
-</div>
-
 Create additional environment-aware objects with `reactive()` from the
 [shiny][2] package. A useful type of reactive object for an efficient pipeline
 is the result of data manipulations, which can be calculated once and used
 multiple times.
 
-```
-```{r echo = FALSE, cache = FALSE}
-plot_data <- reactive({
-  filter(animals,
-         species_id == input[['pick_species']])
+```{...}
+... <- ...({
+  animals %>%
+    filter(species_id == input[['pick_species']])
 })
-```
+output[['fast_ts_plot']] <- renderPlot({
+  ... %>%
+    ggplot(aes(year)) +
+      geom_bar()
+})
 ```
 
-```
-```{r echo = FALSE, cache = FALSE}
-renderPlot({
-  plot_data() %>%
-  ggplot(aes(year)) +
-    geom_bar()
-})
-```
-```
+## Reactivity
 
-<div class="notes">
-In the worked example, the step of filtering the `animals` data frame still only
-occurs once. In a scenario where the subset of animals were used for multiple
-computations or vizualitions, creating the reactive `plot_data()` object makes
-a more efficient pipeline.
-</div>
+Don't forget to include your plot in the document!
+
+```{...}
+plotOutput()
+```
 
 ## Resources
 
 - [RStudio Cheatsheet][4]
 - [RStudio article on interactive documents][5]
+- [RStudio article on "shiny_prerendered" runtime][5]
 - [RMarkdown Gallery][6]
 
 ## Exercises
@@ -539,24 +344,10 @@ Display your presentation on GitHub. Your repository on GitHub includes a free
 web hosting service known as GitHub Pages. Publish your worksheet there with the
 following steps.
 
-- Copy the resulting HTML file to `docs/index.html`.
+- Remove any bits of the shiny runtime (GitHub only serves static pages).
+- Copy the HTML output file to `docs/index.html`.
 - Stage, commit & push the `docs/index.html` file to GitHub.
 - On GitHub, under Settings > GitHub Pages, set `docs/` as the source.
-
-## Solutions
-
-## Solution 1
-
-character | format
----------|----------
-*        | *italics*
-**       | **bold**
-^        | super^script^
-~~       | ~~strikethrough~~
-
-## Solution 2
-
-Just follow the instructions!
 
 [1]: https://cran.r-project.org/package=rmarkdown
 [2]: https://cran.r-project.org/package=shiny
