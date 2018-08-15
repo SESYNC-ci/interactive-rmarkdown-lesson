@@ -420,7 +420,7 @@ content in the output document: input and output "widgets". The user can change
 the input and the output, e.g. a table or plot, dynamically responds.
 
 ```{r echo = FALSE, out.width = '100%'}
-include_graphics('images/arrows3.png')
+include_graphics('docs/images/arrows3.png')
 ```
 
 <div class="notes">
