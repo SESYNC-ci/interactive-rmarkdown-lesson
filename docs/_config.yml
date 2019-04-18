@@ -7,7 +7,7 @@ handouts:
   - data/animals.csv
   - data/species.csv
   - data/README.md
-tag: v0.1
+tag: v0.2
 lesson: 9
 instructor:
 authors:
@@ -17,8 +17,13 @@ authors:
 # Slides
 
 slide_sorter:
-  # this lesson is contained in lesson.Rmd at the project root
-  # and by-passes the usual jekyll pipeline
+  - intro
+  - markdown
+  - rmarkdown
+  - pipeline
+  - shiny
+  - conclude
+  - exercises
 
 #####################################
 # Only modify content above or risk #
