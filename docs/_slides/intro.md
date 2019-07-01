@@ -62,22 +62,9 @@ The handout for this lesson _is_ this lesson. The lesson's `.Rmd` worksheet is
 the RMarkdown source for this document (with a few ommissions for you to
 fill in). Open it and find this line of code:
 
-
-
-~~~r
-> data.frame(counts = c(4, 5, 6))
-~~~
-{:.input title="Console"}
-
-
-~~~
-  counts
-1      4
-2      5
-3      6
-~~~
-{:.output}
-
+```{r}
+data.frame(counts = c(4, 5, 6))
+```
 
 The output *is not in the source*---it was "knit" into the rendered
 output. Press the "Knit" button in RStudio to generate the single-page view of

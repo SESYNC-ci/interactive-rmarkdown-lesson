@@ -61,8 +61,8 @@ process running on the server. The "data" context is a special context needed
 for cached chunk output that we want available to the server.
 
 ````
-```{r load_data, echo = FALSE, cache.extra = md5sum('{{ site.handouts[1] }}'), context = 'data'}
-source('{{ site.handouts[1] }}')
+```{r load_data, echo = FALSE, cache.extra = md5sum('{{ site.data.lesson.handouts[1] }}'), context = 'data'}
+source('{{ site.data.lesson.handouts[1] }}')
 rodents <- subset(rodents, !is.na(weight))
 ```
 ````

@@ -8,6 +8,14 @@ formatting.
 
 ===
 
+## Text
+
+Text fenced by "\*" is translated by the Markdown interpreter into italics. This
+is just one example of formating text according to this *light-weight*
+syntax, i.e. the document is still readable as plain text.
+
+===
+
 ## Preformatted Text
 
 Text fenced by "\`\`\`" is left untouched by the Markdown interpreter, usually

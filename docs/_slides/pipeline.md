@@ -14,7 +14,7 @@ current code chunk. The entire script is evaluated in the current environment.
 
 ````
 ```{r load_data, echo = FALSE}
-source('{{ site.handouts[1] }}')
+source('{{ site.data.lesson.handouts[1] }}')
 ```
 ````
 
@@ -47,7 +47,7 @@ The code interpreter is not limited to R. Several interpreters, including
 `python` and `sql`, can be used for code written directly into a code chunk.
 
 ````
-```{python}
+```{r 'python'`}
 greeting = 'Hello, {}!'
 print(greeting.format('world'))
 ```
@@ -61,7 +61,7 @@ Access to your operating system shell, for example the Linux `bash` interpreter,
 provides a way to run any scripted pipeline step.
 
 ````
-```{bash}
+```{r 'bash'`}
 python -c 'import os; print("Hello, {}!".format(os.environ["USER"]))'
 ```
 ````
@@ -136,7 +136,7 @@ if the load_data chunk is executed. Knit the document and compare the
 
 ````
 ```{r load_data, echo = FALSE}
-source('{{ site.handouts[1] }}')
+source('{{ site.data.lesson.handouts[1] }}')
 rodents <- subset(rodents, !is.na(weight))
 ```
 ````
@@ -167,9 +167,10 @@ library(tools)
 opts_chunk$set(message = FALSE, warning = FALSE, out.width = '75%', cache = TRUE)
 ```
 ````
+
 ````
-```{r load_data, echo = FALSE, cache.extra = md5sum('{{ site.handouts[1] }}')}
-source('{{ site.handouts[1] }}')
+```{r load_data, echo = FALSE, cache.extra = md5sum('{{ site.data.lesson.handouts[1] }}')}
+source('{{ site.data.lesson.handouts[1] }}')
 rodents <- subset(rodents, !is.na(weight))
 ```
 ````

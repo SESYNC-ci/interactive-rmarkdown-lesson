@@ -14,7 +14,7 @@ current code chunk. The entire script is evaluated in the current environment.
 
 ````
 ```{r load_data, echo = FALSE}
-source('{{ site.handouts[1] }}')
+source('{{ site.data.lesson.handouts[1] }}')
 ```
 ````
 
@@ -136,7 +136,7 @@ if the load_data chunk is executed. Knit the document and compare the
 
 ````
 ```{r load_data, echo = FALSE}
-source('{{ site.handouts[1] }}')
+source('{{ site.data.lesson.handouts[1] }}')
 rodents <- subset(rodents, !is.na(weight))
 ```
 ````
@@ -169,8 +169,8 @@ opts_chunk$set(message = FALSE, warning = FALSE, out.width = '75%', cache = TRUE
 ````
 
 ````
-```{r load_data, echo = FALSE, cache.extra = md5sum('{{ site.handouts[1] }}')}
-source('{{ site.handouts[1] }}')
+```{r load_data, echo = FALSE, cache.extra = md5sum('{{ site.data.lesson.handouts[1] }}')}
+source('{{ site.data.lesson.handouts[1] }}')
 rodents <- subset(rodents, !is.na(weight))
 ```
 ````

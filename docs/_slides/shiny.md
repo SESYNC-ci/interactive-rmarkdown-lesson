@@ -27,7 +27,7 @@ The [shiny][2] package provides functions that generate two key types of
 content in the output document: input and output "widgets". The user can change
 the input and the output, e.g. a table or plot, dynamically responds.
 
-<img src="{{ site.baseurl }}/docs/images/arrows3.png" title=" " alt=" " width="100%" />
+![]({{ 'images/arrows3.png' | relative_url }})
 
 Writing an interactive document requires careful attention to how your input and
 output objects relate to each other, i.e. knowing what actions will initiate
@@ -61,8 +61,8 @@ process running on the server. The "data" context is a special context needed
 for cached chunk output that we want available to the server.
 
 ````
-```{r load_data, echo = FALSE, cache.extra = md5sum('{{ site.handouts[1] }}'), context = 'data'}
-source('{{ site.handouts[1] }}')
+```{r load_data, echo = FALSE, cache.extra = md5sum('{{ site.data.lesson.handouts[1] }}'), context = 'data'}
+source('{{ site.data.lesson.handouts[1] }}')
 rodents <- subset(rodents, !is.na(weight))
 ```
 ````

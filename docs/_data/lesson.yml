@@ -1,0 +1,21 @@
+title: Smart and Interactive Documents
+handouts:
+  - worksheet.Rmd
+  - worksheet.R
+  - data/animals.csv
+  - data/species.csv
+  - data/README.md
+tag: v0.2
+lesson: 9
+instructor:
+authors:
+  - Ian Carroll
+  - Kelly Hondula
+sorter:
+  - intro
+  - markdown
+  - rmarkdown
+  - pipeline
+  - shiny
+  - conclude
+  - exercises
