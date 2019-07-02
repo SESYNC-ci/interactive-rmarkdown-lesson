@@ -1,6 +1,21 @@
 ---
 ---
 
+## Lesson Objectives
+
+1. Start with "dumb" documents and the basics of Markdown.
+1. Get "smart" by embedding computed document content.
+1. Go "interactive" with [shiny](){:.rlib} components.
+1. Envision an efficient, one-click pipeline with RMarkdown.
+
+===
+
+## Specific Achievements
+
+1. Create a slideshow with interactive visualizations.
+
+===
+
 ## How Smart?
 
 The reproducible pipeline under construction begins with open data, uses scripts
@@ -23,15 +38,7 @@ corresponding tables, plots, and other graphical output to dynamically update.
 
 Interactive documents require connection to a live R process, which any user
 running RStudio can provide, but so can hosting services like
-http://www.shinyapps.io/.
-
-===
-
-## Lesson Objectives
-
-1. Start with "dumb" documents and the basics of Markdown.
-1. Envision an efficient, one-click pipeline with RMarkdown.
-1. Create an interactive document with Shiny.
+<http://www.shinyapps.io/>.
 
 ===
 
@@ -50,7 +57,7 @@ types of formatted documents (e.g Word, PDF, and HTML).
 
 ## RMarkdown
 
-The [rmarkdown][1] package bundles the formatting ability of Markdown
+The [rmarkdown](){:.rlib} package bundles the formatting ability of Markdown
 with the ability to send embedded code to an R interpreter and capture the
 result.
 
@@ -58,16 +65,18 @@ result.
 
 ## Seeing is Believing
 
-The handout for this lesson _is_ this lesson. The lesson's `.Rmd` worksheet is
-the RMarkdown source for this document (with a few ommissions for you to
-fill in). Open it and find this line of code:
+The lesson's `.Rmd` worksheet is an RMarkdown script. Open it and find the
+following incantation.
 
+````
 ```{r}
-data.frame(counts = c(4, 5, 6))
+counts <- c(4, 5, 6)
+mean(counts)
 ```
+````
+{:.text-document title="{{ site.data.lesson.handouts[0] }}"}
 
-The output *is not in the source*---it was "knit" into the rendered
-output. Press the "Knit" button in RStudio to generate the single-page view of
-this lesson. As we proceed, fill in the `...` areas of your worksheet, and press
-the "Knit" button to verify the output.
+Press the "Knit" button in RStudio to generate the computed document. Note that
+after the code we entered is the computed result. As we proceed, fill in each
+`...` in your worksheet, and press the "Knit" button to examine the result.
 {:.notes}

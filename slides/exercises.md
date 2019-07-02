@@ -13,11 +13,25 @@ characters \*, \*\*, \^, and \~, providing an example of each.
 
 ===
 
+## Solution 1
+
+```
+character | format
+----------|----------
+*         | *italics*
+**        | **bold**
+^         | super^script^
+~~        | ~~strikethrough~~
+```
+{:.text-document title="Solution"}
+
+===
+
 ## Exercise 2
 
-Display your presentation on GitHub. Your repository on GitHub includes a free
-web hosting service known as GitHub Pages. Publish your worksheet there with the
-following steps.
+Display a copy of your presentation on GitHub. Your repository on GitHub
+includes a free web hosting service known as GitHub Pages. Publish your
+worksheet there with the following steps.
 
 - Remove any bits of the shiny runtime (GitHub only serves static pages).
 - Copy the HTML output file to `docs/index.html`.
@@ -26,21 +40,8 @@ following steps.
 
 ===
 
-## Solutions
-
-===
-
-## Solution 1
-
-character | format
----------|----------
-*        | *italics*
-**       | **bold**
-^        | super^script^
-~~       | ~~strikethrough~~
-
-===
-
 ## Solution 2
 
-Just follow the instructions!
+![]({% include asset.html path="images/read_instructions.jpg" %})  
+*SpaceX*
+{:.captioned}

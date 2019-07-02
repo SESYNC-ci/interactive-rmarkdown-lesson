@@ -12,21 +12,23 @@ R interpreter, append `{r}` to the upper fence.
 seq(1, 10)
 ```
 ````
+{:.text-document title="{{ site.data.lesson.handouts[0] }}"}
 
 ===
 
 ## Chunk Options
 
-Each code chunk runs under options specified globally or within the `{r ...}`
+Each code chunk runs under options specified globally or within the `{r, ...}`
 expression. The option `echo = FALSE` would cause the output to render without
 the input. The option `eval = FALSE`, would prevent evaluation and output
 rendering.
 
 ````
-```{r echo = FALSE}
+```{r, echo = FALSE}
 seq(1, 10)
 ```
 ````
+{:.text-document title="{{ site.data.lesson.handouts[0] }}"}
 
 ===
 
@@ -42,3 +44,4 @@ uses for them.
 seq(1, 10)
 ```
 ````
+{:.text-document title="{{ site.data.lesson.handouts[0] }}"}
