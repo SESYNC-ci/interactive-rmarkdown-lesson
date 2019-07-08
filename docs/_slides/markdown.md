@@ -111,7 +111,7 @@ italicized, as it would outside a "code fence".
 {:.text-document title="{{ site.data.lesson.handouts[0] }}"}
 
 That's three backtick characters, found next to the "1" on QWERTY keyboards,
-above and below the text. A single backtick leave's code "inline", while three
+above and below the text. A single backtick leaves code "inline", while three
 (or more) backticks indicate a separate block of preformatted text or a
 "chunk".
 {:.notes}
