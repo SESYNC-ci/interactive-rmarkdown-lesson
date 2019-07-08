@@ -21,7 +21,7 @@ source('{{ site.data.lesson.handouts[1] }}')
 ````
 {:.text-document title="{{ site.data.lesson.handouts[0] }}"}
 
-The lesson's `.R` worksheet is an R script creating a `rodents` data frame,
+The lesson's `.R` worksheet is an R script creating a `state_movers` data frame,
 which "sourcing" makes available to following lines as well as subsequent code
 chunks.
 {:.notes}
@@ -31,8 +31,9 @@ chunks.
 ````
 ```{r bar_plot}
 library(ggplot2)
-ggplot(rodents, aes(x = species_id, y = count)) +
-  geom_bar(stat = 'identity')
+ggplot(state_movers, aes(x = current_state, y = sum_new_movers)) +
+  geom_bar(stat = 'identity') +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
 ```
 ````
 {:.text-document title="{{ site.data.lesson.handouts[0] }}"}
@@ -106,15 +107,17 @@ opts_chunk$set(message = FALSE, warning = FALSE, cache = TRUE)
 ## Cache
 
 Render the worksheet again to create a cache for each code chunk, *and then*
-modify your `bar_plot` chunk to show species' weights and render again. The
+modify your `bar_plot` chunk to sort the bars and render again. The
 "slow" `load_data` chunk zips right by, using its cache, but the plot will
 change.
 
 ````
 ```{r bar_plot}
 library(ggplot2)
-ggplot(rodents, aes(x = species_id, y = weight)) +
-  geom_bar(stat = 'identity')
+ggplot(state_movers, aes(x = reorder(current_state, -sum_new_movers), 
+                         y = sum_new_movers)) +
+  geom_bar(stat = 'identity') +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
 ```
 ````
 {:.text-document title="{{ site.data.lesson.handouts[0] }}"}
@@ -128,8 +131,10 @@ dependency runs.
 
 ````
 ```{r clean_bar_plot, dependson = 'load_data'}
-ggplot(rodents, aes(x = species_id, y = weight)) +
-  geom_bar(stat = 'identity')
+ggplot(state_movers, aes(x = reorder(current_state, -sum_new_movers), 
+                         y = sum_new_movers)) +
+  geom_bar(stat = 'identity') +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
 ```
 ````
 {:.text-document title="{{ site.data.lesson.handouts[0] }}"}
@@ -146,18 +151,18 @@ if the load_data chunk is executed. Knit the document and compare the
 ````
 ```{r load_data, echo = FALSE}
 source('{{ site.data.lesson.handouts[1] }}')
-rodents <- subset(rodents, !is.na(weight))
+cty_to_cty <- subset(cty_to_cty, !is.na(movers_state_est))
 ```
 ````
 {:.text-document title="{{ site.data.lesson.handouts[0] }}"}
 
 The updated result of `clean_bar_plot` now reflects the cleaning operation on
-the `rodents` data frame. But the `bar_plot` chunk simply loaded results from
+the `cty_to_cty` data frame. But the `bar_plot` chunk simply loaded results from
 its cache, because the dependency was not explicit.
 {:.notes}
 
 Note that while the second plot is re-drawn when the `load_data` *chunk*
-changes, the chunk mostly just brings in sourced input. The `rodents` variable
+changes, the chunk mostly just brings in sourced input. The `cty_to_cty` variable
 could change if the code in the sourced file is updated, but this would *not*
 trigger re-generation of the second plot!
 {:.notes}
@@ -188,12 +193,12 @@ within any chunk option definition.
 ````
 ```{r load_data, echo = FALSE, cache.extra = md5sum('{{ site.data.lesson.handouts[1] }}')}
 source('{{ site.data.lesson.handouts[1] }}')
-rodents <- subset(rodents, !is.na(weight))
+cty_to_cty <- subset(cty_to_cty, !is.na(movers_state_est))
 ```
 ````
 {:.text-document title="{{ site.data.lesson.handouts[0] }}"}
 
-A change to the `rodents` data frame, for example by dropping NAs at a more
+A change to the `cty_to_cty` data frame, for example by dropping NAs at a more
 appropriate data cleaning step in the sourced `.R` script, will now be reflected
 in the `clean_bar_plot` result with `dependson = load_data`, but not the
 `bar_plot` plot.

@@ -47,9 +47,9 @@ the user changes the input widget with the corresponding name.
 
 ````
 ```{r, echo = FALSE}
-selectInput('pick_species',
-  label = 'Pick a Species',
-  choices = unique(species[['id']]))
+selectInput('pick_state',
+  label = 'Pick a State',
+  choices = unique(cty_to_cty[['current_state']]))
 ```
 ````
 {:.text-document title="{{ site.data.lesson.handouts[0] }}"}
@@ -71,7 +71,7 @@ for cached chunk output that we want available to the server.
 ````
 ```{r load_data, context = 'data', echo = FALSE, cache.extra = md5sum('{{ site.data.lesson.handouts[1] }}')}
 source('{{ site.data.lesson.handouts[1] }}')
-rodents <- subset(rodents, !is.na(weight))
+cty_to_cty <- subset(cty_to_cty, !is.na(movers_state_est))
 ```
 ````
 {:.text-document title="{{ site.data.lesson.handouts[0] }}"}
@@ -89,11 +89,14 @@ in the [shiny]{:.rlib} package that produce output widgets.
 ````
 ```{r, context = 'server'}
 library(dplyr)
-output[['ts_plot']] <- renderPlot({
-  animals %>%
-    filter(species_id == input[['pick_species']]) %>%
-    ggplot(aes(year)) + 
-      geom_bar()
+output[['mov_plot']] <- renderPlot({
+  cty_to_cty %>%
+    filter(current_state == input[['pick_state']]) %>%
+    group_by(prior_1year_state_fips) %>%
+    summarise(sum_new_movers = sum(movers_state_est, na.rm = TRUE)) %>%
+    ggplot(aes(x = prior_1year_state_fips, y = sum_new_movers)) +
+    geom_bar(stat = 'identity') +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1))
 })
 ```
 ````
@@ -138,13 +141,15 @@ Create additional environment-aware objects with `reactive()` from the
 ````
 ```{r, context = 'server'}
 plot_data <- reactive({
-  filter(animals,
-         species_id == input[['pick_species']])
+    filter(cty_to_cty, current_state == input[['pick_state']]) %>%
+    group_by(prior_1year_state_fips) %>%
+    summarise(sum_new_movers = sum(movers_state_est, na.rm = TRUE))
 })
-output[['react_ts_plot']] <- renderPlot({
+output[['react_mov_plot']] <- renderPlot({
   plot_data() %>%
-    ggplot(aes(year)) +
-      geom_bar()
+    ggplot(aes(x = prior_1year_state_fips, y = sum_new_movers)) +
+       geom_bar(stat = 'identity') +
+       theme(axis.text.x = element_text(angle = 90, hjust = 1))
 })
 ```
 ````
@@ -156,13 +161,13 @@ Don't forget to include your plot in the document!
 
 ````
 ```{r, echo = FASE}
-plotOutput('react_ts_plot')
+plotOutput('react_mov_plot')
 ```
 ````
 {:.text-document title="{{ site.data.lesson.handouts[0] }}"}
 
-In the worked example, the step of filtering the `animals` data frame still only
-occurs once. In a scenario where the subset of animals were used for multiple
+In the worked example, the step of filtering the `cty_to_cty` data frame still only
+occurs once. In a scenario where the subset of states were used for multiple
 computations or vizualitions, creating the reactive `plot_data()` object makes
 a more efficient pipeline.
 {:.notes}

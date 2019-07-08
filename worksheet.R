@@ -1,17 +1,18 @@
 library(dplyr)
 
-# read in data
-animals <- read.csv('data/animals.csv', stringsAsFactors = FALSE)
-species <- read.csv('data/species.csv', stringsAsFactors = FALSE)
+library(readr)
+library(dplyr)
 
-# group animals captured in one year by species_id and summarize with total
-# abundance and average weight ignoring non-rodents
-rodents <- animals %>%
-  filter(year == 1990) %>%
-  inner_join(species, c('species_id' = 'id')) %>%
-  filter(taxa == 'Rodent') %>%
-  group_by(species_id) %>%
-  summarize(count = n(), weight = mean(weight))
+# read in data
+cty_to_cty <- readr::read_csv('data/cty-to-cty_clean.csv')
+
+state_movers <- cty_to_cty %>% group_by(current_state) %>%
+  summarise(sum_new_movers = sum(movers_state_est, na.rm = TRUE)) %>% 
+  arrange(sum_new_movers)
+
+# state_movers <- cty_to_cty %>% group_by(current_state) %>%
+#   summarise(sum_new_movers = sum(movers_state_est, na.rm = TRUE)) %>% 
+#   arrange(sum_new_movers)
 
 # pretend this takes a really long time!
 Sys.sleep(10)
