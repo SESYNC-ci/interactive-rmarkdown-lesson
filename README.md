@@ -12,6 +12,8 @@ elements that do not require R code to run (and therefore shiny runtime),
 such as leaflet maps or other [html widgets](http://gallery.htmlwidgets.org/).
 * Shiny output objects are stored in a list. This lesson uses double bracket
 list notation (eg. `output[['my_plot']]`), which is equivalent to `output$myplot`.
+* cache troubleshooting with shiny runtime: under `Run Document`, clear prerendered
+output
 
 ## Cyberhelp @SESYNC
 
