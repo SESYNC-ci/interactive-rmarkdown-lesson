@@ -164,7 +164,9 @@ if the load_data chunk is executed. Knit the document and compare the
 ````
 ```{r load_data, echo = FALSE}
 source('{{ site.data.lesson.handouts[1] }}')
-cty_to_cty <- subset(cty_to_cty, !is.na(movers_state_est))
+cty_to_cty <- subset(
+  cty_to_cty,
+  !is.na(movers_state_est))
 ```
 ````
 {:.text-document title="{{ site.data.lesson.handouts[0] }}"}

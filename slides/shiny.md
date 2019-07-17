@@ -71,7 +71,9 @@ for cached chunk output that we want available to the server.
 ````
 ```{r load_data, context = 'data', echo = FALSE, cache.extra = md5sum('{{ site.data.lesson.handouts[1] }}')}
 source('{{ site.data.lesson.handouts[1] }}')
-cty_to_cty <- subset(cty_to_cty, !is.na(movers_state_est))
+cty_to_cty <- subset(
+  cty_to_cty,
+  !is.na(movers_state_est))
 ```
 ````
 {:.text-document title="{{ site.data.lesson.handouts[0] }}"}
