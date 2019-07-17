@@ -1,10 +1,12 @@
 ## Interactive RMarkdown Lesson
 
-brief lesson description for potential students
+Extend your data pipeline with RMarkdown and Shiny.
 
 ## Instructor Notes
 
-tips on running the tutorial for instructors
+* rmarkdown documents rendered to HTML files can also have interactive 
+elements that do not require R code to run, such as leaflet maps. This
+does not require shiny runtime. 
 
 ## Cyberhelp @SESYNC
 
