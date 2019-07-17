@@ -74,8 +74,18 @@ output: html_document
 ```
 {:.text-document title="{{ site.data.lesson.handouts[0] }}"}
 
+===
+
 Change the output variable to `ioslides_presentation` and knit again to generate
 output formatted as a slideshow.
+
+```
+---
+output: ioslides_presentation
+---
+```
+{:.text-document title="{{ site.data.lesson.handouts[0] }}"}
+
 
 ===
 

@@ -4,19 +4,19 @@ output: html_document
 
 ```{r setup, include=FALSE}
 library(knitr)
-opts_chunk$set(message = FALSE, warning = FALSE)
+opts_chunk$set(
+  message = FALSE,
+  warning = FALSE)
 ```
-
-# Smart and Interactive Documents
 
 ## Seeing is Believing
 
 ```{r}
-counts <- c(4, 5, 6)
-mean(counts)
+x <- rnorm(10)
+mean(x)
 ```
 
-Text and ...
+Plain text about ...something... important.
 
 Bulleted Lists
 
@@ -41,7 +41,7 @@ id | ...
 
 ... The Third Biggest Heading
 
-Chunks
+## Chunks
 
 ```
 The ... indicated by asterisks here does not become
@@ -58,48 +58,57 @@ seq(...)
 seq(1, 10)
 ```
 
+## Chunk Options
 
-...
+```...
 seq(1, 10)
 ```
 
+## Chunk Labels
 
 ```{...}
 seq(1, 10)
 ```
 
+## Sourced Input
 
 ```{... load_data, echo = FALSE}
 ...
 ```
 
-
-```{... bar_plot}
+```{... bar_plot, echo = FALSE}
 library(ggplot2)
-ggplot(..., aes(x = current_state, y = sum_new_movers)) +
+ggplot(...,
+  aes(x = current_state, y = sum_new_movers)) +
   geom_bar(stat = 'identity') +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  theme(axis.text.x = element_text(
+    angle = 90, hjust = 1))
 ```
 
+## Alternative Engines
 
 ```{...}
 greeting = 'Hello, {}!'
 print(greeting.format('World'))
 ```
 
-
 ```{...}
 echo "Hello, ${USER}!"
 ```
 
+## Cache Dependencies
 
-```{... clean_bar_plot, ...}
-ggplot(state_movers, aes(x = reorder(current_state, -sum_new_movers), 
-                         y = sum_new_movers)) +
+```{... clean_bar_plot, ..., echo = FALSE}
+ggplot(state_movers,
+  aes(
+    x = reorder(current_state, -sum_new_movers), 
+    y = sum_new_movers)) +
   geom_bar(stat = 'identity') +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  theme(axis.text.x = element_text(
+    angle = 90, hjust = 1))
 ```
 
+## Input Objects
 
 ```{..., echo = FALSE}
 ...('pick_state',
@@ -107,10 +116,10 @@ ggplot(state_movers, aes(x = reorder(current_state, -sum_new_movers),
   choices = unique(cty_to_cty[['current_state']]))
 ```
 
+## Output Objects
 
 ```{..., context = 'server'}
 library(dplyr)
-
 ... <- ...({
 cty_to_cty %>%
     filter(current_state == input[['pick_state']]) %>%
@@ -122,11 +131,11 @@ cty_to_cty %>%
 })
 ```
 
-
 ```{..., echo = FALSE}
 ...
 ```
 
+## Reactivity
 
 ```{..., context = 'server'}
 plot_data <- ...
@@ -141,7 +150,6 @@ output[['react_mov_plot']] <- renderPlot({
        theme(axis.text.x = element_text(angle = 90, hjust = 1))
 })
 ```
-
 
 ```{..., echo = FALSE}
 plotOutput(...)

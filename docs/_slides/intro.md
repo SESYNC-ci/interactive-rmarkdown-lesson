@@ -38,7 +38,7 @@ corresponding tables, plots, and other graphical output to dynamically update.
 
 Interactive documents require connection to a live R process, which any user
 running RStudio can provide, but so can hosting services like
-<http://www.shinyapps.io/>.
+[www.shinyapps.io](https://www.shinyapps.io).
 
 ===
 
@@ -70,8 +70,8 @@ following incantation.
 
 ````
 ```{r}
-counts <- c(4, 5, 6)
-mean(counts)
+x <- rnorm(10)
+mean(x)
 ```
 ````
 {:.text-document title="{{ site.data.lesson.handouts[0] }}"}

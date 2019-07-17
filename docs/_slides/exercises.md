@@ -3,29 +3,11 @@
 
 ## Exercises
 
-===
-
 ## Exercise 1
 
 Create a table with two columns, starting with a header row with fields
 "Character" and "Example". Fill in the table with rows for the special Markdown
 characters \*, \*\*, \^, and \~, providing an example of each.
-
-===
-
-## Solution 1
-
-```
-character | format
-----------|----------
-*         | *italics*
-**        | **bold**
-^         | super^script^
-~~        | ~~strikethrough~~
-```
-{:.text-document title="Solution"}
-
-===
 
 ## Exercise 2
 
@@ -38,9 +20,22 @@ worksheet there with the following steps.
 - Stage, commit & push the `docs/index.html` file to GitHub.
 - On GitHub, under Settings > GitHub Pages, set `docs/` as the source.
 
-===
+## Solutions
 
-## Solution 2
+### Solution 1
+
+```
+character | format
+----------|----------
+*         | *italics*
+**        | **bold**
+^         | super^script^
+~~        | ~~strikethrough~~
+```
+{:.text-document title="Solution"}
+
+
+### Solution 2
 
 ![]({% include asset.html path="images/read_instructions.jpg" %})  
 *SpaceX*

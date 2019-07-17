@@ -29,11 +29,13 @@ chunks.
 ===
 
 ````
-```{r bar_plot}
+```{r bar_plot, echo = FALSE}
 library(ggplot2)
-ggplot(state_movers, aes(x = current_state, y = sum_new_movers)) +
+ggplot(state_movers,
+  aes(x = current_state, y = sum_new_movers)) +
   geom_bar(stat = 'identity') +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  theme(axis.text.x = element_text(
+    angle = 90, hjust = 1))
 ```
 ````
 {:.text-document title="{{ site.data.lesson.handouts[0] }}"}
@@ -46,7 +48,7 @@ then using an [rmarkdown](){:.rlib} document to execute the pipeline.
 
 ===
 
-## Non-sourced Input
+## Alternative Engines
 
 RMarkdown code chunks are not limited to R. Several "engines", including
 Python and SQL, can be used for code written directly into a code chunk.
@@ -97,7 +99,10 @@ chunk that has not been modified since the last `knit`.
 ````
 ```{r setup, include = FALSE}
 library(knitr)
-opts_chunk$set(message = FALSE, warning = FALSE, cache = TRUE)
+opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  cache = TRUE)
 ```
 ````
 {:.text-document title="{{ site.data.lesson.handouts[0] }}"}
@@ -106,21 +111,26 @@ opts_chunk$set(message = FALSE, warning = FALSE, cache = TRUE)
 
 ## Cache
 
-Render the worksheet again to create a cache for each code chunk, *and then*
-modify your `bar_plot` chunk to sort the bars and render again. The
-"slow" `load_data` chunk zips right by, using its cache, but the plot will
-change.
+1. Render the worksheet again to create a cache for each code chunk.
+2. *Then* modify your `bar_plot` chunk to sort the bars and render again.
 
 ````
 ```{r bar_plot}
 library(ggplot2)
-ggplot(state_movers, aes(x = reorder(current_state, -sum_new_movers), 
-                         y = sum_new_movers)) +
+ggplot(state_movers,
+  aes(
+    x = reorder(current_state, -sum_new_movers), 
+    y = sum_new_movers)) +
   geom_bar(stat = 'identity') +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  theme(axis.text.x = element_text(
+    angle = 90, hjust = 1))
 ```
 ````
 {:.text-document title="{{ site.data.lesson.handouts[0] }}"}
+
+The "slow" `load_data` chunk zips right by, using its cache, but the plot will
+change because you modified that code chunk.
+{:.notes}
 
 ===
 
@@ -130,11 +140,14 @@ With the `dependson` option, even an unmodified chunk will be re-evaluated if a
 dependency runs.
 
 ````
-```{r clean_bar_plot, dependson = 'load_data'}
-ggplot(state_movers, aes(x = reorder(current_state, -sum_new_movers), 
-                         y = sum_new_movers)) +
+```{r clean_bar_plot, dependson = 'load_data', echo = FALSE}
+ggplot(state_movers,
+  aes(
+    x = reorder(current_state, -sum_new_movers), 
+    y = sum_new_movers)) +
   geom_bar(stat = 'identity') +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  theme(axis.text.x = element_text(
+    angle = 90, hjust = 1))
 ```
 ````
 {:.text-document title="{{ site.data.lesson.handouts[0] }}"}
@@ -180,7 +193,10 @@ dependencies.
 ```{r setup}
 library(knitr)
 library(tools)
-opts_chunk$set(message = FALSE, warning = FALSE, cache = TRUE)
+opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  cache = TRUE)
 ```
 ````
 {:.text-document title="{{ site.data.lesson.handouts[0] }}"}
