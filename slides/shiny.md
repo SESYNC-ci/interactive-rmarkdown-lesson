@@ -84,7 +84,7 @@ You have to clear (i.e. delete) the cache since we added the runtime.
 ## Output Objects
 
 Output objects are created in the "server" context by any of several functions
-in the [shiny]{:.rlib} package that produce output widgets.
+in the [shiny](){:.rlib} package that produce output widgets.
 
 ````
 ```{r, context = 'server'}
@@ -106,7 +106,7 @@ output[['mov_plot']] <- renderPlot({
 
 ````
 ```{r, echo = FALSE}
-plotOutput('ts_plot')
+plotOutput('mov_plot')
 ```
 ````
 {:.text-document title="{{ site.data.lesson.handouts[0] }}"}
