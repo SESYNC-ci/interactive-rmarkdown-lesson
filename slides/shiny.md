@@ -92,9 +92,9 @@ library(dplyr)
 output[['mov_plot']] <- renderPlot({
   cty_to_cty %>%
     filter(current_state == input[['pick_state']]) %>%
-    group_by(prior_1year_state_fips) %>%
+    group_by(prior_1year_state) %>%
     summarise(sum_new_movers = sum(movers_state_est, na.rm = TRUE)) %>%
-    ggplot(aes(x = prior_1year_state_fips, y = sum_new_movers)) +
+    ggplot(aes(x = prior_1year_state, y = sum_new_movers)) +
     geom_bar(stat = 'identity') +
     theme(axis.text.x = element_text(angle = 90, hjust = 1))
 })
@@ -142,12 +142,12 @@ Create additional environment-aware objects with `reactive()` from the
 ```{r, context = 'server'}
 plot_data <- reactive({
     filter(cty_to_cty, current_state == input[['pick_state']]) %>%
-    group_by(prior_1year_state_fips) %>%
+    group_by(prior_1year_state) %>%
     summarise(sum_new_movers = sum(movers_state_est, na.rm = TRUE))
 })
 output[['react_mov_plot']] <- renderPlot({
   plot_data() %>%
-    ggplot(aes(x = prior_1year_state_fips, y = sum_new_movers)) +
+    ggplot(aes(x = prior_1year_state, y = sum_new_movers)) +
        geom_bar(stat = 'identity') +
        theme(axis.text.x = element_text(angle = 90, hjust = 1))
 })
