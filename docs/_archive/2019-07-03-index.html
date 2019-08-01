@@ -1,0 +1,720 @@
+---
+---
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smart and Interactive Documents</title>
+<meta name="description" content="Extend your data pipeline with RMarkdown and Shiny.">
+<link rel="canonical"
+      href="https://sesync-ci.github.io/interactive-rmarkdown-lesson/2019/07/03/index.html">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sesync-ci/lesson-style@3.0/docs/assets/css/default.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sesync-ci/lesson-style@3.0/docs/assets/css/syntax.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sesync-ci/lesson-style@3.0/docs/assets/css/static.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      rel="stylesheet"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+      crossorigin="anonymous">
+
+    
+  </head>
+  <body>
+    <div class="page-content">
+      <div class="wrapper">
+        
+
+<h1 style="text-transform: none;" id="smart-and-interactive-documents">Smart and Interactive Documents</h1>
+
+<p>Lesson 7 with <em>Kelly Hondula</em></p>
+
+<nav id="ToC">
+
+  <ul>
+    <li><a href="#/slides/intro">Lesson Objectives</a></li>
+    <li><a href="#/slides/markdown">Markdown Syntax</a></li>
+    <li><a href="#/slides/rmarkdown">R + Markdown</a></li>
+    <li><a href="#/slides/pipeline">Reproducible Pipeline</a></li>
+    <li><a href="#/slides/shiny">Interact with Shiny</a></li>
+    <li><a href="#/slides/conclude">Resources</a></li>
+    <li><a href="#/slides/exercises">Exercises</a></li>
+  </ul>
+</nav>
+
+<hr />
+<p><a name="/slides/intro"></a></p>
+
+<h2 id="lesson-objectives">Lesson Objectives</h2>
+
+<ol>
+  <li>Start with “dumb” documents and the basics of Markdown.</li>
+  <li>Get “smart” by embedding computed document content.</li>
+  <li>Go “interactive” with <a href="" class="rlib">shiny</a> components.</li>
+  <li>Envision an efficient, one-click pipeline with RMarkdown.</li>
+</ol>
+
+<h2 id="specific-achievements">Specific Achievements</h2>
+
+<ol>
+  <li>Create a slideshow with interactive visualizations.</li>
+</ol>
+
+<h2 id="how-smart">How Smart?</h2>
+
+<p>The reproducible pipeline under construction begins with open data, uses scripts
+to perform analyses and create visualizations, and ideally ends in a published
+write-up.</p>
+
+<p><a href="" class="rlib">rmarkdown</a> merges code and documentation, allowing you to create
+automatic reports that include the results of computations and visualizations
+created on-the-fly.</p>
+
+<h2 id="how-interactive">How Interactive?</h2>
+
+<p class="notes">Rather than rendering to a static document, RStudio lets you easily inject
+<a href="" class="rlib">shiny</a> input and output widgets to documents constructed with RMarkdown.
+These widgets can accept user input through forms, menus, and sliders, and cause
+corresponding tables, plots, and other graphical output to dynamically update.</p>
+
+<p>Interactive documents require connection to a live R process, which any user
+running RStudio can provide, but so can hosting services like
+<a href="https://www.shinyapps.io">www.shinyapps.io</a>.</p>
+
+<h2 id="markdown">Markdown</h2>
+
+<p>Markdown exists outside of the R environment. Like R, it is both a language and
+an interpreter.</p>
+
+<ol>
+  <li>
+    <p>It is a <strong>language</strong> with special characters and a syntax that convey
+formatting instructions inside text files.</p>
+  </li>
+  <li>
+    <p>The accompanying <strong>interpreter</strong> reads text files and outputs one of several
+types of formatted documents (e.g Word, PDF, and HTML).</p>
+  </li>
+</ol>
+
+<h2 id="rmarkdown">RMarkdown</h2>
+
+<p>The <a href="" class="rlib">rmarkdown</a> package bundles the formatting ability of Markdown
+with the ability to send embedded code to an R interpreter and capture the
+result.</p>
+
+<h2 id="seeing-is-believing">Seeing is Believing</h2>
+
+<p>The lesson’s <code class="highlighter-rouge">.Rmd</code> worksheet is an RMarkdown script. Open it and find the
+following incantation.</p>
+
+<div class="text-document highlighter-rouge" title="worksheet-7.Rmd"><div class="highlight"><pre class="highlight"><code>```{r}
+x &lt;- rnorm(10)
+mean(x)
+```
+</code></pre></div></div>
+
+<p class="notes">Press the “Knit” button in RStudio to generate the computed document. Note that
+after the code we entered is the computed result. As we proceed, fill in each
+<code class="highlighter-rouge">...</code> in your worksheet, and press the “Knit” button to examine the result.</p>
+
+<p class="ToS"><a href="#/slides/intro">Top of Section</a></p>
+
+<hr />
+<p><a name="/slides/markdown"></a></p>
+
+<h2 id="markdown-syntax">Markdown Syntax</h2>
+
+<p>Before getting to the good stuff, a quick introduction to “dumb” Markdown
+formatting.</p>
+
+<h2 id="text-and-emphasis">Text and Emphasis</h2>
+
+<p class="notes">Text in Markdown is rendered as is, albeit in some pre-defined size and font,
+into an HTML file by default. Text fenced by “*” is translated by the Markdown
+interpreter into italics for emphasis.</p>
+
+<p>Adding emphasis is an example of “marking up” plain text with a <em>light-weight</em>
+syntax, i.e. the code is readable before being rendered into a document.</p>
+
+<h2 id="bulleted-lists">Bulleted Lists</h2>
+
+<p>Sequential lines beginning with “-“ are grouped into a bulleted list.</p>
+
+<div class="text-document highlighter-rouge" title="worksheet-7.Rmd"><div class="highlight"><pre class="highlight"><code>- SQL
+- Python
+- R
+</code></pre></div></div>
+
+<h2 id="numbered-lists">Numbered Lists</h2>
+
+<p>Sequential lines beginning with a number are grouped into a numbered list.
+The actual number you use is irrelevant.</p>
+
+<div class="text-document highlighter-rouge" title="worksheet-7.Rmd"><div class="highlight"><pre class="highlight"><code>6. SQL
+1. Python
+5. R
+</code></pre></div></div>
+
+<h2 id="tables">Tables</h2>
+
+<p>Separate text with vertical bars (<code class="highlighter-rouge">|</code>) to indicate columns of a table and
+hyphens (<code class="highlighter-rouge">-</code>) to mark the beginning of a table or to separate the header row.</p>
+
+<div class="text-document highlighter-rouge" title="worksheet-7.Rmd"><div class="highlight"><pre class="highlight"><code>id | treatment
+---|----------
+1  | control
+2  | exclosure
+</code></pre></div></div>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>Text at the top of a Markdown file and fenced by <code class="highlighter-rouge">---</code> stores configuration.
+Variables set here can, for example, change the type of document produced.</p>
+
+<div class="text-document highlighter-rouge" title="worksheet-7.Rmd"><div class="highlight"><pre class="highlight"><code>---
+output: html_document
+---
+</code></pre></div></div>
+
+<p>Change the output variable to <code class="highlighter-rouge">ioslides_presentation</code> and knit again to generate
+output formatted as a slideshow.</p>
+
+<div class="text-document highlighter-rouge" title="worksheet-7.Rmd"><div class="highlight"><pre class="highlight"><code>---
+output: ioslides_presentation
+---
+</code></pre></div></div>
+
+<h2 id="headers">Headers</h2>
+
+<p>Default formatting for an <code class="highlighter-rouge">html_document</code> differs in some cases from an
+<code class="highlighter-rouge">ioslides_presentation</code>. The use of <code class="highlighter-rouge">#</code> to indicate a hierarchy of heading sizes
+serves an additional purpose in a slideshow.</p>
+
+<div class="text-document highlighter-rouge" title="worksheet-7.Rmd"><div class="highlight"><pre class="highlight"><code># The Biggest Heading
+
+## The Second Biggest Heading
+
+### The Third Biggest Heading
+</code></pre></div></div>
+
+<h2 id="preformatted-text">Preformatted Text</h2>
+
+<p>Text fenced by either one or three “backticks” (the “`” character) is left
+untouched by the Markdown interpreter, usually for the purpose of displaying
+code. Everything else is formatted according to a light-weight syntax.</p>
+
+<div class="text-document highlighter-rouge" title="worksheet-7.Rmd"><div class="highlight"><pre class="highlight"><code>```
+The *emphasis* indicated by asterisks here does not become
+italicized, as it would outside a "code fence".
+```
+</code></pre></div></div>
+
+<p class="notes">That’s three backtick characters, found next to the “1” on QWERTY keyboards,
+above and below the text. A single backtick leaves code “inline”, while three
+(or more) backticks indicate a separate block of preformatted text or a
+“chunk”.</p>
+
+<p>You can write R code in a chunk, but it’s still just “dumb” Markdown.</p>
+
+<div class="text-document highlighter-rouge" title="worksheet-7.Rmd"><div class="highlight"><pre class="highlight"><code>```
+seq(1, 10)
+```
+</code></pre></div></div>
+
+<p class="ToS"><a href="#/slides/markdown">Top of Section</a></p>
+
+<hr />
+<p><a name="/slides/rmarkdown"></a></p>
+
+<h2 id="r--markdown">R + Markdown</h2>
+
+<p>The <a href="" class="rlib">rmarkdown</a> package evaluates the R expressions within a code fence and
+inserts the result into the output document. To send these “code chunks” to the
+R interpreter, append <code class="highlighter-rouge">{r}</code> to the upper fence.</p>
+
+<div class="text-document highlighter-rouge" title="worksheet-7.Rmd"><div class="highlight"><pre class="highlight"><code>```{r}
+seq(1, 10)
+```
+</code></pre></div></div>
+
+<h2 id="chunk-options">Chunk Options</h2>
+
+<p>Each code chunk runs under options specified globally or within the <code class="highlighter-rouge">{r, ...}</code>
+expression. The option <code class="highlighter-rouge">echo = FALSE</code> would cause the output to render without
+the input. The option <code class="highlighter-rouge">eval = FALSE</code>, would prevent evaluation and output
+rendering.</p>
+
+<div class="text-document highlighter-rouge" title="worksheet-7.Rmd"><div class="highlight"><pre class="highlight"><code>```{r, echo = FALSE}
+seq(1, 10)
+```
+</code></pre></div></div>
+
+<h2 id="chunk-labels">Chunk Labels</h2>
+
+<p>The first entry after <code class="highlighter-rouge">{r</code> will be interpretted as a chunk label if it is not
+setting an option. Chunk options are specified after the optional label and
+separated by commas. Labels do not show up in the document—we’ll have other
+uses for them.</p>
+
+<div class="text-document highlighter-rouge" title="worksheet-7.Rmd"><div class="highlight"><pre class="highlight"><code>```{r does_not_run, eval = FALSE}
+seq(1, 10)
+```
+</code></pre></div></div>
+
+<p class="ToS"><a href="#/slides/rmarkdown">Top of Section</a></p>
+
+<hr />
+<p><a name="/slides/pipeline"></a></p>
+
+<h2 id="reproducible-pipeline">Reproducible Pipeline</h2>
+
+<p>A pipeline might rely on several scripts that separately aquire data, tidy it,
+fit or run models, and validate results. Embedding calls to those external
+scripts is one way to create a one-click pipeline.</p>
+
+<h2 id="sourced-input">Sourced Input</h2>
+
+<p>The <code class="highlighter-rouge">source</code> function in R includes the contents of a separate file in the
+current code chunk. The entire script is evaluated in the current environment.</p>
+
+<div class="text-document highlighter-rouge" title="worksheet-7.Rmd"><div class="highlight"><pre class="highlight"><code>```{r load_data, echo = FALSE}
+source('worksheet-7.R')
+```
+</code></pre></div></div>
+
+<p class="notes">The lesson’s <code class="highlighter-rouge">.R</code> worksheet is an R script creating a <code class="highlighter-rouge">state_movers</code> data frame,
+which “sourcing” makes available to following lines as well as subsequent code
+chunks.</p>
+
+<div class="text-document highlighter-rouge" title="worksheet-7.Rmd"><div class="highlight"><pre class="highlight"><code>```{r bar_plot, echo = FALSE}
+library(ggplot2)
+ggplot(state_movers,
+  aes(x = current_state, y = sum_new_movers)) +
+  geom_bar(stat = 'identity') +
+  theme(axis.text.x = element_text(
+    angle = 90, hjust = 1))
+```
+</code></pre></div></div>
+
+<p class="notes">If your entire pipeline can be scripted in R, you <em>could</em> embed the entire
+analysis in code chunks within your write-up. The better practice demonstrated
+here is “modularizing” your analysis by splitting it into isolated scripts, and
+then using an <a href="" class="rlib">rmarkdown</a> document to execute the pipeline.</p>
+
+<h2 id="alternative-engines">Alternative Engines</h2>
+
+<p>RMarkdown code chunks are not limited to R. Several “engines”, including
+Python and SQL, can be used for code written directly into a code chunk.</p>
+
+<div class="text-document highlighter-rouge" title="worksheet-7.Rmd"><div class="highlight"><pre class="highlight"><code>```{python}
+greeting = 'Hello, {}!'
+print(greeting.format('World'))
+```
+</code></pre></div></div>
+
+<p>Access to your operating system shell, for example the Linux Bash interpreter,
+provides a way to run any scripted pipeline step.</p>
+
+<div class="text-document highlighter-rouge" title="worksheet-7.Rmd"><div class="highlight"><pre class="highlight"><code>```{bash}
+echo "Hello, ${USER}!"
+```
+</code></pre></div></div>
+
+<p class="notes">An important distinction between sourced and non-sourced input is the inabillity
+of interpreters other than R to return R objects. By using <code class="highlighter-rouge">source</code>, an R script
+is run in the current R session, which provides an easy way to pass data between
+scripts. Typically, file-based input and output is necessary for multi-lingual
+pipelines. For Python, however, the
+<a href="https://rstudio.github.io/reticulate/articles/r_markdown.html">reticulate</a>
+package provides a bi-directional interface.</p>
+
+<h2 id="efficient-pipelines">Efficient Pipelines</h2>
+
+<p class="notes">There is no reason to run every step of a pipeline after making changes
+“downstream”. Like more comprehensive software for automating pipelines,
+<a href="" class="rlib">rmarkdown</a> includes the notion of tracking dependencies and caching
+results. Cached code chunks are not re-evaluated unless the content of the code
+changes.</p>
+
+<p>Enable <code class="highlighter-rouge">cache</code> in a <code class="highlighter-rouge">setup</code> chunk to turn off re-evaluation of any code
+chunk that has not been modified since the last <code class="highlighter-rouge">knit</code>.</p>
+
+<div class="text-document highlighter-rouge" title="worksheet-7.Rmd"><div class="highlight"><pre class="highlight"><code>```{r setup, include = FALSE}
+library(knitr)
+opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  cache = TRUE)
+```
+</code></pre></div></div>
+
+<h2 id="cache">Cache</h2>
+
+<ol>
+  <li>Render the worksheet again to create a cache for each code chunk.</li>
+  <li><em>Then</em> modify your <code class="highlighter-rouge">bar_plot</code> chunk to sort the bars and render again.</li>
+</ol>
+
+<div class="text-document highlighter-rouge" title="worksheet-7.Rmd"><div class="highlight"><pre class="highlight"><code>```{r bar_plot}
+library(ggplot2)
+ggplot(state_movers,
+  aes(
+    x = reorder(current_state, -sum_new_movers), 
+    y = sum_new_movers)) +
+  geom_bar(stat = 'identity') +
+  theme(axis.text.x = element_text(
+    angle = 90, hjust = 1))
+```
+</code></pre></div></div>
+
+<p class="notes">The “slow” <code class="highlighter-rouge">load_data</code> chunk zips right by, using its cache, but the plot will
+change because you modified that code chunk.</p>
+
+<h2 id="cache-dependencies">Cache Dependencies</h2>
+
+<p>With the <code class="highlighter-rouge">dependson</code> option, even an unmodified chunk will be re-evaluated if a
+dependency runs.</p>
+
+<div class="text-document highlighter-rouge" title="worksheet-7.Rmd"><div class="highlight"><pre class="highlight"><code>```{r clean_bar_plot, dependson = 'load_data', echo = FALSE}
+ggplot(state_movers,
+  aes(
+    x = reorder(current_state, -sum_new_movers), 
+    y = sum_new_movers)) +
+  geom_bar(stat = 'identity') +
+  theme(axis.text.x = element_text(
+    angle = 90, hjust = 1))
+```
+</code></pre></div></div>
+
+<p class="notes">Add the above new chunk with <code class="highlighter-rouge">dependson = 'load_data'</code> so it updates if and only
+if the load_data chunk is executed. Knit the document and compare the
+<code class="highlighter-rouge">bar_chart</code> and <code class="highlighter-rouge">clean_bar_chart</code> outputs; at this point <code class="highlighter-rouge">bar_plot</code> and
+<code class="highlighter-rouge">clean_bar_plot</code> should be identical. Now make <code class="highlighter-rouge">load_data</code> clean the data, then
+<code class="highlighter-rouge">knit</code> again and compare the plots.</p>
+
+<div class="text-document highlighter-rouge" title="worksheet-7.Rmd"><div class="highlight"><pre class="highlight"><code>```{r load_data, echo = FALSE}
+source('worksheet-7.R')
+cty_to_cty &lt;- subset(cty_to_cty, !is.na(movers_state_est))
+```
+</code></pre></div></div>
+
+<p class="notes">The updated result of <code class="highlighter-rouge">clean_bar_plot</code> now reflects the cleaning operation on
+the <code class="highlighter-rouge">cty_to_cty</code> data frame. But the <code class="highlighter-rouge">bar_plot</code> chunk simply loaded results from
+its cache, because the dependency was not explicit.</p>
+
+<p class="notes">Note that while the second plot is re-drawn when the <code class="highlighter-rouge">load_data</code> <em>chunk</em>
+changes, the chunk mostly just brings in sourced input. The <code class="highlighter-rouge">cty_to_cty</code> variable
+could change if the code in the sourced file is updated, but this would <em>not</em>
+trigger re-generation of the second plot!</p>
+
+<h2 id="external-dependencies">External Dependencies</h2>
+
+<p>By adding the option <code class="highlighter-rouge">cache.extra</code>, any trigger can be given to force
+re-evaluation of an unmodified chunk. In combination with the <code class="highlighter-rouge">md5sum</code> function
+from the <code class="highlighter-rouge">tools</code> package, it provides a mechanism for external file
+dependencies.</p>
+
+<div class="text-document highlighter-rouge" title="worksheet-7.Rmd"><div class="highlight"><pre class="highlight"><code>```{r setup}
+library(knitr)
+library(tools)
+opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  cache = TRUE)
+```
+</code></pre></div></div>
+
+<p>With the <a href="" class="rlib">tools</a> package loaded in the “setup” chunk, we can use it
+within any chunk option definition.</p>
+
+<div class="text-document highlighter-rouge" title="worksheet-7.Rmd"><div class="highlight"><pre class="highlight"><code>```{r load_data, echo = FALSE, cache.extra = md5sum('worksheet-7.R')}
+source('worksheet-7.R')
+cty_to_cty &lt;- subset(cty_to_cty, !is.na(movers_state_est))
+```
+</code></pre></div></div>
+
+<p class="notes">A change to the <code class="highlighter-rouge">cty_to_cty</code> data frame, for example by dropping NAs at a more
+appropriate data cleaning step in the sourced <code class="highlighter-rouge">.R</code> script, will now be reflected
+in the <code class="highlighter-rouge">clean_bar_plot</code> result with <code class="highlighter-rouge">dependson = load_data</code>, but not the
+<code class="highlighter-rouge">bar_plot</code> plot.</p>
+
+<p class="ToS"><a href="#/slides/pipeline">Top of Section</a></p>
+
+<hr />
+<p><a name="/slides/shiny"></a></p>
+
+<h2 id="interact-with-shiny">Interact with Shiny</h2>
+
+<p>Enough about “smart” documents, what about “interactive”?</p>
+
+<h2 id="what-is-shiny">What is Shiny?</h2>
+
+<p>Shiny is a web application framework for R that allows you to create interactive
+apps for exploratory data analysis and visualization, to facilitate remote
+collaboration, share results, and <a href="http://shiny.rstudio.com/gallery/">much
+more</a>.</p>
+
+<div class="text-document highlighter-rouge" title="worksheet-7.Rmd"><div class="highlight"><pre class="highlight"><code>---
+output: ioslides_presentation
+runtime: shiny_prerendered
+---
+</code></pre></div></div>
+
+<h2 id="input-and-output">Input and Output</h2>
+
+<p>The <a href="" class="rlib">shiny</a> package provides functions that generate two key types of
+content in the output document: input and output “widgets”. The user can change
+the input and the output, e.g. a table or plot, dynamically responds.</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/sesync-ci/interactive-rmarkdown-lesson@v0.2/docs/assets/images/arrows3.png" alt="" /></p>
+
+<p class="notes">Writing an interactive document requires careful attention to how your input and
+output objects relate to each other, i.e. knowing what actions will initiate
+what sections of code to run at what time.</p>
+
+<h2 id="input-objects">Input Objects</h2>
+
+<p>Input objects collect information from the user and save it into a list variable
+called <code class="highlighter-rouge">input</code>. The value for any given named entity in the list updates when
+the user changes the input widget with the corresponding name.</p>
+
+<div class="text-document highlighter-rouge" title="worksheet-7.Rmd"><div class="highlight"><pre class="highlight"><code>```{r, echo = FALSE}
+selectInput('pick_state',
+  label = 'Pick a State',
+  choices = unique(cty_to_cty[['current_state']]))
+```
+</code></pre></div></div>
+
+<p class="notes">RStudio has a nice
+<a href="http://shiny.rstudio.com/gallery/widget-gallery.html">gallery</a> of input objects
+and accompanying sample code.</p>
+
+<h2 id="contexts">Contexts</h2>
+
+<p>As shown in the figure above, an interactive document runs R code in multiple
+“contexts”; for example, while rendering the document and in the connected R
+process running on the server. The “data” context is a special context needed
+for cached chunk output that we want available to the server.</p>
+
+<div class="text-document highlighter-rouge" title="worksheet-7.Rmd"><div class="highlight"><pre class="highlight"><code>```{r load_data, context = 'data', echo = FALSE, cache.extra = md5sum('worksheet-7.R')}
+source('worksheet-7.R')
+cty_to_cty &lt;- subset(cty_to_cty, !is.na(movers_state_est))
+```
+</code></pre></div></div>
+
+<p class="notes">You have to clear (i.e. delete) the cache since we added the runtime.</p>
+
+<h2 id="output-objects">Output Objects</h2>
+
+<p>Output objects are created in the “server” context by any of several functions
+in the <a href="" class="rlib">shiny</a> package that produce output widgets.</p>
+
+<div class="text-document highlighter-rouge" title="worksheet-7.Rmd"><div class="highlight"><pre class="highlight"><code>```{r, context = 'server'}
+library(dplyr)
+output[['mov_plot']] &lt;- renderPlot({
+  cty_to_cty %&gt;%
+    filter(current_state == input[['pick_state']]) %&gt;%
+    group_by(prior_1year_state) %&gt;%
+    summarise(sum_new_movers = sum(movers_state_est, na.rm = TRUE)) %&gt;%
+    ggplot(aes(x = prior_1year_state, y = sum_new_movers)) +
+    geom_bar(stat = 'identity') +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1))
+})
+```
+</code></pre></div></div>
+
+<div class="text-document highlighter-rouge" title="worksheet-7.Rmd"><div class="highlight"><pre class="highlight"><code>```{r, echo = FALSE}
+plotOutput('mov_plot')
+```
+</code></pre></div></div>
+
+<h2 id="render-functions">Render Functions</h2>
+
+<p>Key functions for creating output objects:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">renderPrint()</code></li>
+  <li><code class="highlighter-rouge">renderText()</code></li>
+  <li><code class="highlighter-rouge">renderPlot()</code></li>
+  <li><code class="highlighter-rouge">renderTable()</code></li>
+  <li><code class="highlighter-rouge">renderDataTable()</code></li>
+</ul>
+
+<h2 id="reactivity">Reactivity</h2>
+
+<p class="notes">The output objects in an interactive document have to be understood in terms of
+reactivity: a reactive object “knows” which changes in the environment (in
+particular the list called <code class="highlighter-rouge">input</code>) should trigger it to update its value. A
+useful type of user-created reactive object for an efficient pipeline is any
+result of a complicated data manipulation, which can be calculated once and used
+multiple times.</p>
+
+<p>Create additional environment-aware objects with <code class="highlighter-rouge">reactive()</code> from the
+<a href="" class="rlib">shiny</a> package.</p>
+
+<div class="text-document highlighter-rouge" title="worksheet-7.Rmd"><div class="highlight"><pre class="highlight"><code>```{r, context = 'server'}
+plot_data &lt;- reactive({
+    filter(cty_to_cty, current_state == input[['pick_state']]) %&gt;%
+    group_by(prior_1year_state) %&gt;%
+    summarise(sum_new_movers = sum(movers_state_est, na.rm = TRUE))
+})
+output[['react_mov_plot']] &lt;- renderPlot({
+  plot_data() %&gt;%
+    ggplot(aes(x = prior_1year_state, y = sum_new_movers)) +
+       geom_bar(stat = 'identity') +
+       theme(axis.text.x = element_text(angle = 90, hjust = 1))
+})
+```
+</code></pre></div></div>
+
+<p>Don’t forget to include your plot in the document!</p>
+
+<div class="text-document highlighter-rouge" title="worksheet-7.Rmd"><div class="highlight"><pre class="highlight"><code>```{r, echo = FASE}
+plotOutput('react_mov_plot')
+```
+</code></pre></div></div>
+
+<p class="notes">In the worked example, the step of filtering the <code class="highlighter-rouge">cty_to_cty</code> data frame still only
+occurs once. In a scenario where the subset of states were used for multiple
+computations or vizualitions, creating the reactive <code class="highlighter-rouge">plot_data()</code> object makes
+a more efficient pipeline.</p>
+
+<p class="ToS"><a href="#/slides/shiny">Top of Section</a></p>
+
+<hr />
+<p><a name="/slides/conclude"></a></p>
+
+<h2 id="resources">Resources</h2>
+
+<ul>
+  <li><a href="https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf">RStudio Cheatsheet</a></li>
+  <li><a href="https://shiny.rstudio.com/articles/interactive-docs.html">RStudio article on interactive documents</a></li>
+  <li><a href="https://rmarkdown.rstudio.com/authoring_shiny_prerendered.html">RStudio article on “shiny_prerendered” runtime</a></li>
+  <li><a href="https://rmarkdown.rstudio.com/gallery.html">RMarkdown Gallery</a></li>
+</ul>
+
+<p class="ToS"><a href="#/slides/conclude">Top of Section</a></p>
+
+<hr />
+<p><a name="/slides/exercises"></a></p>
+
+<h2 id="exercises">Exercises</h2>
+
+<h2 id="exercise-1">Exercise 1</h2>
+
+<p>Create a table with two columns, starting with a header row with fields
+“Character” and “Example”. Fill in the table with rows for the special Markdown
+characters *, **, \^, and ~, providing an example of each.</p>
+
+<h2 id="exercise-2">Exercise 2</h2>
+
+<p>Display a copy of your presentation on GitHub. Your repository on GitHub
+includes a free web hosting service known as GitHub Pages. Publish your
+worksheet there with the following steps.</p>
+
+<ul>
+  <li>Remove any bits of the shiny runtime (GitHub only serves static pages).</li>
+  <li>Copy the HTML output file to <code class="highlighter-rouge">docs/index.html</code>.</li>
+  <li>Stage, commit &amp; push the <code class="highlighter-rouge">docs/index.html</code> file to GitHub.</li>
+  <li>On GitHub, under Settings &gt; GitHub Pages, set <code class="highlighter-rouge">docs/</code> as the source.</li>
+</ul>
+
+<h2 id="solutions">Solutions</h2>
+
+<h3 id="solution-1">Solution 1</h3>
+
+<div class="text-document highlighter-rouge" title="Solution"><div class="highlight"><pre class="highlight"><code>character | format
+----------|----------
+*         | *italics*
+**        | **bold**
+^         | super^script^
+~~        | ~~strikethrough~~
+</code></pre></div></div>
+
+<h3 id="solution-2">Solution 2</h3>
+
+<p class="captioned"><img src="https://cdn.jsdelivr.net/gh/sesync-ci/interactive-rmarkdown-lesson@v0.2/docs/assets/images/read_instructions.jpg" alt="" /><br />
+<em>SpaceX</em></p>
+
+<p class="ToS"><a href="#/slides/exercises">Top of Section</a></p>
+
+
+
+        <hr>
+
+<p>If you need to catch-up before a section of code will work, just squish it's
+🍅 to copy code above it into your clipboard. Then paste into your interpreter's
+console, run, and you'll be ready to start in on that section. Code copied by
+both 🍅 and 📋 will also appear below, where you can edit first, and then copy,
+paste, and run again.</p>
+
+<div class="output">
+  <pre id="ketchup" contenteditable="true"><code># Nothing here yet!</code></pre>
+</div>
+
+<script>
+$(document).ready(function(){
+  
+  // Add code help icons to code blocks
+  $('.input, .text-document').append('<ul class="code-help">');
+  $('.code-help')
+    .append('<li class="clipboard">📋</li>');
+  $('.text-document:not(.no-eval) .code-help')
+    .append('<li class="ketchup">🍅</li>');
+
+  // Bind copy actions to mouse clicks on icons
+  var $ketchup = $('#ketchup');
+  var rng = document.createRange();
+  var sel = window.getSelection();
+  $('.ketchup').click(function(){
+    var $prev = $(this)
+      .parents('.text-document')
+      .prevAll('.text-document:has(.ketchup)');
+    $ketchup.find('code').text($prev.find('pre').text());
+    rng.selectNodeContents($ketchup[0]);
+    sel.removeAllRanges();
+    sel.addRange(rng);
+    document.execCommand("copy");
+    sel.removeAllRanges();
+  });
+  $('.text-document .clipboard').click(function(){
+    var pre = $(this).parents('.text-document').find('pre').text();
+    $ketchup.find('code').text(pre);
+    rng.selectNodeContents($ketchup[0]);
+    sel.removeAllRanges();
+    sel.addRange(rng);
+    document.execCommand("copy");
+    sel.removeAllRanges();
+  });
+  $('.input .clipboard').click(function(){
+    var pre = $(this).parents('.input').find('pre').text();
+    pre = pre.replace(/(^|\n)[>+] /g, '$1');
+    $ketchup.find('code').text(pre);
+    rng.selectNodeContents($ketchup[0]);
+    sel.removeAllRanges();
+    sel.addRange(rng);
+    document.execCommand("copy");
+    sel.removeAllRanges();
+  });
+});
+</script>
+      </div>
+    </div>
+    <script>
+$(document).ready(function(){
+  // Add links to R and Python package repositories
+  $('a.rlib').map(function(){
+    this.href = 'https://cran.r-project.org/package=' + this.innerText;
+  });
+  $('a.pylib').map(function(){
+    this.href = 'https://pypi.python.org/pypi/' + this.innerText;
+  });
+});
+</script>
+
+  </body>
+</html>
