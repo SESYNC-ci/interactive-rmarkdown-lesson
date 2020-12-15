@@ -1,3 +1,5 @@
+[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://github.com/SESYNC-ci/sesync-ci.github.io/blob/master/lesson/lesson-lifecycle.md#stable)
+
 ## Interactive RMarkdown Lesson
 
 Extend your data pipeline with RMarkdown and Shiny.
